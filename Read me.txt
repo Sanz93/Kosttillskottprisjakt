@@ -1,0 +1,304 @@
+  Jag ska bygga en HELT NY statisk affiliate-sajt: KOSTTILLSKOTTPRISJAKT.SE
+  Vi börjar i en helt tom mapp.
+
+  ═══════════════════════════════════════════
+  PROJEKTKONTEXT
+  ═══════════════════════════════════════════
+
+  Detta är en FÄRSK domän — det finns ingen befintlig WordPress eller annan
+  version att kopiera/inspireras av. Vi bygger från noll med en tydlig vision.
+
+  Sajten kommer deployas till Cloudflare Pages senare (jag har redan erfarenhet
+  av wrangler CLI från mina andra projekt).
+
+  ═══════════════════════════════════════════
+  KRITISKT — DIFFERENTIERING (LÄS NOGA)
+  ═══════════════════════════════════════════
+
+  Jag driver redan en LIKNANDE sajt: kosttillskottexperten.se (samma nisch).
+  DENNA NYA sajt får ABSOLUT INTE se ut eller kännas som den andra.
+
+  Skälen är affärskritiska:
+  - Google straffar duplicate/near-duplicate sites (kan minska ranking på BÅDA)
+  - Affiliate-nätverk kan misstänka "samma operatör spammar" och blockera
+  - Besökare som råkar landa på båda ska INTE känna igen "samma sajt med ny logo"
+
+  Därför måste denna sajt vara TYDLIGT ANNORLUNDA i:
+
+  1. POSITIONERING
+     - Kosttillskottexperten = "expert-recensioner, djupa guider, kunskap"
+     - Kosttillskottprisjakt = "pris-jakt, dagliga deals, fyndindex, sparkalkyl"
+     → Fokus här ska vara PRIS, BESPARINGAR, ERBJUDANDEN — inte expert-rådgivning
+
+  2. DESIGN
+     - Ingen Apple-clean palette (det är reserverat för andra projekt)
+     - Använd en deal-hunter-estetik: kraftiga färger (orange/röd/grön accent),
+       bold typografi, "REA"/"-50%"-badges, klockor med "erbjudande löper ut"
+     - Helt annan typografi (gärna en condensed sans-serif som Barlow Condensed
+       eller Oswald för rubriker)
+     - Annan layout-rytm (denna kan ha hero med pris-comparison redan ovanför fold,
+       andra sajter har hero med USP-text)
+
+  3. SPRÅK & TON
+     - Mer urgent, mer "deal-aktig": "Spara 40% IDAG", "Bästa pris just nu",
+       "Lägsta priset på 6 månader"
+     - Använd siffror överallt: "Spara X kr", "X% billigare än Y"
+     - Mindre akademiskt, mer praktiskt
+
+  4. INNEHÅLLSSTRUKTUR
+     - Kategorier organiserade efter PRIS-segment ("Under 200 kr", "Premium")
+       hellre än per produkttyp
+     - Daily/Weekly deals-sektion på frontpage
+     - Pris-historik-grafer eller "Senaste prisändringar"-tabell
+     - "Veckans fynd"-pucka
+
+  5. URL-STRUKTUR (för att slippa SEO-kollision)
+     - Använd /butik/<bolag>/ istället för /recension/<bolag>/
+     - Använd /erbjudande/<slug>/ istället för /artikel/<slug>/
+     - Använd /priskategori/<id>/ istället för /kategori/<id>/
+
+  ═══════════════════════════════════════════
+  ARKITEKTUR — STATIC ONLY, INGEN BACKEND
+  ═══════════════════════════════════════════
+
+  - Ren HTML/CSS/Vanilla JS (INGA frameworks)
+  - Build-scripts i Node.js
+  - Deploy via Cloudflare Pages (wrangler CLI)
+  - INGEN databas, INGA Pages Functions, INGEN tracking, INGET admin
+
+  ═══════════════════════════════════════════
+  AFFILIATE-PARTNERS (BARA 2 ST)
+  ═══════════════════════════════════════════
+
+  Sajten har ENDAST två samarbetspartners:
+
+  1. Svenskt Kosttillskott
+  2. Svensk Hälsokost
+
+  Båda är likvärdigt viktiga — ingen primär/sekundär uppdelning.
+  ALL content ska kretsa kring att jämföra dessa två och hitta lägst pris.
+
+  ═══════════════════════════════════════════
+  FÖRETAGSUPPGIFTER (lägg in på footer + alla legala sidor)
+  ═══════════════════════════════════════════
+
+  - Företag: Markdrop Solutions
+  - Adress: Stafsinge 557, 311 94 Falkenberg, Sverige
+  - Organisationsnummer: 930204-2933
+  - VAT: SE930204293301
+  - Email (admin): robin.svensson93@hotmail.com
+
+  Footer ska visa "© 2026 Markdrop Solutions · Org.nr 930204-2933 · VAT SE930204293301".
+
+  ═══════════════════════════════════════════
+  SIDOR ATT BYGGA
+  ═══════════════════════════════════════════
+
+  1. FRONTPAGE (/)
+     - Hero med deal-fokus: "Sveriges prisjämförelse för kosttillskott"
+     - "Veckans toppfynd" — 3-5 produkter med faktisk pris-besparing
+     - Pris-jämförelse mellan Svenskt Kosttillskott och Svensk Hälsokost
+     - "Daglig deal" eller "Erbjudande denna vecka"
+     - Lista över priskategorier
+
+  2. BUTIKSSIDOR (/butik/<bolag>/)  — 2 st
+     - Översikt av butiken: vad de är bra på, prisnivå, sortiment
+     - Tydlig CTA till pretty-link
+     - INGEN traditionell "recension" — istället: "Så bra är priserna hos X"
+     - Pris-tabell över deras top-säljare
+
+  3. PRISKATEGORI-SIDOR (/priskategori/<id>/)
+     - Skapa minst dessa: protein, kreatin, gainer, pre-workout,
+       vitaminer, BCAA, omega3
+     - Tabell: produkt — pris hos Svenskt Kosttillskott — pris hos Svensk Hälsokost — billigast
+     - "Köp där det är billigast"-CTA per rad
+
+  4. ERBJUDANDE-ARTIKLAR (/erbjudande/<slug>/)
+     - 6-10 artiklar med pris-vinkel (1000-1500 ord var)
+     - Exempel:
+       "Bästa proteinpriset just nu — 2026 jämförelse"
+       "Spara 40% på kreatin — fynd-guide"
+       "Pris-test: är iherbs billigare än svenska butiker?"
+     - JSON-LD Article schema
+
+  5. QUIZ-TUNNEL (/quiz/) — BARA EN
+     - 4-5 frågor: "Vad letar du efter?", "Budget?", "Hur mycket vill du spara?"
+     - Resultat rekommenderar antingen Svenskt Kosttillskott ELLER Svensk Hälsokost
+     - Använd "tab-swap" popunder-tekniken
+
+  6. STATISKA SIDOR
+     - /om/ - Om oss (Markdrop Solutions-info)
+     - /metodik/ - Hur vi spårar priser
+     - /kontakt/
+     - /annonssamarbeten/ - Affiliate-disclosure
+     - /integritet/ - GDPR
+     - /villkor/
+     - /cookies/
+
+  7. PRETTY-LINKS (/go/<bolag>/) — 2 st
+     - svenskt_kosttillskott och svensk_halsokost
+     - Samma teknik: meta refresh + JS-redirect + no-referrer + noindex
+
+  ═══════════════════════════════════════════
+  PRETTY-LINK ARKITEKTUR
+  ═══════════════════════════════════════════
+
+  Skapa assets/config-links.js:
+
+  ```javascript
+  window.REAL_LINKS = {
+    svenskt_kosttillskott: "https://...riktig-affiliate-url...",
+    svensk_halsokost: "https://...riktig-affiliate-url..."
+  };
+  ```
+
+  Jag fyller i riktiga URL:er manuellt. Lämna placeholders.
+
+  Varje /go/<id>/index.html ska:
+  1. Ha meta refresh + JS-redirect (fallback)
+  2. Sätta no-referrer
+  3. Vara noindex/nofollow
+  4. Visa "Vidarekoppling..." i 0.3 sek
+
+  ═══════════════════════════════════════════
+  DESIGN — DISKUTERA INNAN BYGG
+  ═══════════════════════════════════════════
+
+  INGEN existerande sajt att besöka. Du bygger brand från noll.
+
+  Presentera 3 designförslag i deal-hunter-genren:
+  - Förslag A: "Black Friday-känsla året runt" (rött/svart, bold, urgency)
+  - Förslag B: "Frisk fynd-stil" (grön/orange, energisk, sport-koppling)
+  - Förslag C: "Premium pris-jämförelse" (mörk navy/guld, sofistikerat men prisdrivet)
+
+  För varje förslag, ange:
+  - Färgpalette (3-5 färger med hex)
+  - Typografi (1-2 fonts)
+  - Hero-koncept (vad besökaren ser först)
+  - En ASCII-mockup av hur frontpage-hero skulle se ut
+
+  Jag väljer en, sen bygger du.
+
+  ═══════════════════════════════════════════
+  SEO-KRAV
+  ═══════════════════════════════════════════
+
+  - JSON-LD på alla sidor (Organization minst)
+  - Article-schema på erbjudande-artiklar
+  - BreadcrumbList överallt
+  - sitemap.xml (genererad)
+  - robots.txt (allow all, disallow /go/ + /quiz/)
+  - Open Graph + Twitter Card meta
+  - Svensk text ("sv-SE")
+  - Mobilanpassad (OBLIGATORISKT)
+
+  VIKTIGT: använd ANDRA meta-description-mönster än kosttillskottexperten skulle
+  använda. Tonen ska skilja sig. Inga identiska fraser.
+
+  ═══════════════════════════════════════════
+  DEPLOY-WORKFLOW
+  ═══════════════════════════════════════════
+
+  Skapa deploy.ps1 i projektroten:
+
+  ```powershell
+  $commit_msg = Read-Host "Commit-meddelande"
+  if ([string]::IsNullOrWhiteSpace($commit_msg)) { $commit_msg = "update" }
+  git add .
+  git commit -m $commit_msg
+  git push
+  wrangler pages deploy . --project-name=kosttillskottprisjakt --branch=main --commit-dirty=true
+  ```
+
+  .gitignore:
+  .wrangler/
+  node_modules/
+  *.log
+
+  ═══════════════════════════════════════════
+  FILSTRUKTUR (förslag)
+  ═══════════════════════════════════════════
+
+  projektrot/
+  ├── index.html                          (frontpage)
+  ├── butik/<bolag>/index.html            (2 st)
+  ├── priskategori/<id>/index.html        (~7 st)
+  ├── erbjudande/<slug>/index.html        (6-10 st)
+  ├── quiz/index.html
+  ├── go/<bolag>/index.html               (2 st)
+  ├── om/index.html
+  ├── metodik/index.html
+  ├── kontakt/index.html
+  ├── annonssamarbeten/index.html
+  ├── integritet/index.html
+  ├── villkor/index.html
+  ├── cookies/index.html
+  ├── assets/
+  │   ├── styles.css
+  │   ├── main.js
+  │   ├── quiz.js
+  │   ├── config-links.js
+  │   ├── shops.js                        (data: 2 butiker)
+  │   ├── categories.js
+  │   ├── articles.js
+  │   └── logos/
+  ├── build-shops.js
+  ├── build-categories.js
+  ├── build-articles.js
+  ├── build-pretty-links.js
+  ├── build-sitemap.js
+  ├── build-all.js
+  ├── deploy.ps1
+  ├── sitemap.xml
+  ├── robots.txt
+  ├── package.json
+  └── .gitignore
+
+  ═══════════════════════════════════════════
+  WORKFLOW
+  ═══════════════════════════════════════════
+
+  Steg 1: Presentera 3 designförslag (med ASCII-mockup per förslag), vänta på mitt val
+  Steg 2: Bygg sajten enligt vald design
+  Steg 3: Skapa shops.js med 2 butikerna
+  Steg 4: Skapa category/article-data (deal-vinkel, inte expert-vinkel)
+  Steg 5: Generera alla sidor via build-scripts
+  Steg 6: Skapa deploy.ps1
+  Steg 7: Sammanfatta vad som är klart + manuella TODOs
+
+  VIKTIGT: Bygg INTE förrän jag valt design.
+
+  ═══════════════════════════════════════════
+  TON & SPRÅK
+  ═══════════════════════════════════════════
+
+  - All text på svenska
+  - Tonen: prisjägar-energi, lite "fynd-spanare", lite urgency men inte spammigt
+  - Använd siffror överallt ("Spara 23%", "Lägsta priset på 6 mån")
+  - Rubriker som klickas: "Är iherbs billigare? Vi pris-testade", "Kreatin-priser maj 2026"
+  - HELT ANNAN ton än en akademisk recensionssajt — det här är "smart shopper"-tonen
+
+  KÖR — börja med Steg 1 (presentera 3 designförslag).
+
+  ---
+  🎯 Sammanfattning av skillnader mot förra prompten
+
+  ┌───────────────────┬──────────────────────────────────┬─────────────────────────────────────┐
+  │      Aspekt       │      Kosttillskottexperten       │        Kosttillskottprisjakt        │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Bolag             │ 8 (3 primära)                    │ 2                                   │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Inspiration       │ Befintlig WordPress              │ Bygg från noll                      │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Vinkel            │ Expert-recensioner               │ Pris-jakt / deals                   │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Design            │ Apple-clean                      │ Deal-hunter (3 förslag)             │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ URL-struktur      │ /recension/ /kategori/ /artikel/ │ /butik/ /priskategori/ /erbjudande/ │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Ton               │ Akademisk, lugn                  │ Urgent, fynd-spanare                │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Antal recensioner │ 8                                │ 2                                   │
+  ├───────────────────┼──────────────────────────────────┼─────────────────────────────────────┤
+  │ Antal artiklar    │ 8-12                             │ 6-10                                │
+  └───────────────────┴──────────────────────────────────┴─────────────────────────────────────┘

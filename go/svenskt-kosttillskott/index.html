@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="sv-SE">
+<head>
+  <meta charset="utf-8">
+  <title>Vidarekoppling till Svenskt Kosttillskott...</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="refresh" content="0; url=about:blank" id="meta-r">
+  <style>
+    html, body { margin:0; padding:0; height:100%; }
+    body {
+      display:flex; align-items:center; justify-content:center;
+      background:#0F1A14; color:#fff;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .box { text-align:center; }
+    .dot {
+      width:14px; height:14px; background:#00C853;
+      border-radius:99px; display:inline-block;
+      animation: pulse 0.9s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity:.4; }
+      50%      { transform: scale(1.4); opacity:1; }
+    }
+  </style>
+  <script src="/assets/config-links.js"></script>
+</head>
+<body>
+  <div class="box">
+    <div class="dot"></div>
+    <p style="margin-top:14px;">Vidarekoppling till <strong>Svenskt Kosttillskott</strong>...</p>
+  </div>
+  <script>
+    (function () {
+      var id = "svenskt_kosttillskott";
+      var url = (window.REAL_LINKS && window.REAL_LINKS[id]) || "/";
+      try {
+        var m = document.getElementById('meta-r');
+        if (m) m.setAttribute('content', '0; url=' + url);
+      } catch (e) {}
+      setTimeout(function () { window.location.replace(url); }, 300);
+    })();
+  </script>
+  <noscript>
+    <p>JavaScript är avstängt. <a href="/" rel="nofollow">Gå tillbaka</a>.</p>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00C853"/>
+      <stop offset="1" stop-color="#FF6D00"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0F1A14"/>
+  <rect x="40" y="40" width="1120" height="550" rx="32" fill="url(#g)" opacity="0.18"/>
+  <text x="80" y="240" font-family="Arial Black, sans-serif" font-size="78" font-weight="900" fill="#ffffff">KOSTTILLSKOTT</text>
+  <text x="80" y="320" font-family="Arial Black, sans-serif" font-size="78" font-weight="900" fill="#FF6D00">PRISJAKT</text>
+  <text x="80" y="420" font-family="Arial, sans-serif" font-size="32" fill="#c9d4cd">Sveriges prisjämförelse för kosttillskott</text>
+  <text x="80" y="540" font-family="Arial, sans-serif" font-size="26" fill="#FFD600">Svenskt Kosttillskott · Svensk Hälsokost · Lägsta pris just nu</text>
+</svg>

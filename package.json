@@ -1,0 +1,15 @@
+{
+  "name": "kosttillskottprisjakt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sveriges prisjämförelse för kosttillskott — statisk sajt.",
+  "scripts": {
+    "build": "node build-all.js",
+    "build:shops": "node build-shops.js",
+    "build:categories": "node build-categories.js",
+    "build:articles": "node build-articles.js",
+    "build:pretty": "node build-pretty-links.js",
+    "build:sitemap": "node build-sitemap.js"
+  },
+  "type": "commonjs"
+}
