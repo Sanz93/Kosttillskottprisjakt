@@ -17,10 +17,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sveriges prisjämförelse för kosttillskott – jämför pris mellan Svenskt Kosttillskott och Svensk Hälsokost">
   <meta name="twitter:description" content="Sveriges prisjämförelse för kosttillskott. Vi visar var samma protein, kreatin, vitaminer och pre-workout kostar minst just nu.">
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="icon" type="image/png" href="./assets/logos/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/logos/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Markdrop Solutions","url":"https://kosttillskottprisjakt.se","email":"robin.svensson93@hotmail.com","vatID":"SE930204293301","address":{"@type":"PostalAddress","streetAddress":"Stafsinge 557","postalCode":"311 94","addressLocality":"Falkenberg","addressCountry":"SE"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kosttillskottprisjakt","url":"https://kosttillskottprisjakt.se","inLanguage":"sv-SE"}</script>
@@ -30,25 +31,17 @@
 <body>
 
 <header class="site-header">
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span><span class="pop">●</span> Lägsta proteinpriset just nu: 249 kr / kilo &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Kreatin från 33 öre / gram &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Premium-omega 209 kr (normalt 269 kr) &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Veckans toppfynd uppdaterade &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Pris-spårning sedan 2024 &nbsp;&nbsp;</span>
-    </div>
-  </div>
   <div class="wrap nav">
-    <a href="./" class="nav-logo">Kosttillskott<span class="accent">prisjakt</span><span class="dot">.</span></a>
+    <a href="./" class="nav-logo" aria-label="Kosttillskottprisjakt – startsida">
+      <img src="./assets/logos/kosttillskottprisjakt.png" alt="Kosttillskottprisjakt" class="nav-logo-img">
+    </a>
     <button class="menu-toggle" aria-label="Meny" aria-expanded="false">&#9776;</button>
     <ul class="nav-links">
       <li><a href="./priskategori/protein/">Priskategorier</a></li>
       <li><a href="./butik/svenskt-kosttillskott/">Butiker</a></li>
-      <li><a href="./erbjudande/veckans-toppfynd/">Erbjudanden</a></li>
-      <li><a href="./quiz/">Quiz</a></li>
+      <li><a href="./erbjudande/veckans-kampanjer-maj-2026/">Pris-guider</a></li>
+      <li><a href="./metodik/">Metodik</a></li>
       <li><a href="./om/">Om oss</a></li>
-      <li><a class="nav-cta" href="./quiz/">Hitta bästa pris</a></li>
     </ul>
   </div>
 </header>
@@ -56,240 +49,221 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-tag">Uppdaterat 2026-05-17</div>
-      <h1>Hitta <span class="hl">lägsta priset</span> på kosttillskott – varje vecka.</h1>
-      <p class="hero-sub">Vi jämför pris mellan Sveriges två största kosttillskottsbutiker så du slipper växla mellan flikar. Klicka direkt till billigast burk – ingen prut, ingen gissning.</p>
+      <span class="eyebrow">Sveriges prisjämförelse för kosttillskott</span>
+      <h1>Olika kampanjer, samma katalog — <em>vi visar var det är billigast.</em></h1>
+      <p class="hero-sub">Svenskt Kosttillskott och Svensk Hälsokost ägs av samma koncern men roterar kampanjer oberoende. Vi spårar de viktigaste produkterna och visar vilken butik som har dem billigast just nu.</p>
       <div class="hero-actions">
         <a href="#fynd" class="btn">Se veckans toppfynd</a>
-        <a href="quiz/" class="btn btn-ghost">Gör pris-quizet</a>
+        <a href="priskategori/protein/" class="btn-link">Bläddra alla kategorier &rarr;</a>
       </div>
-      <p class="text-mute mt-3" style="font-size:.88rem;">2 partnerbutiker &middot; 7 priskategorier &middot; 8 pris-guider</p>
-    </div>
-    <div>
-      <div class="deal-card">
-        <div class="deal-card-head">
-          <span class="title">Live · proteinpriser idag</span>
-          <span class="badge">Hetast just nu</span>
-        </div>
-        <div class="deal-row">
-      <span class="prod">Whey 80% 1 kg, naturell</span>
-      <span class="price-sk" title="Svenskt Kosttillskott">249 kr</span>
-      <span class="price-sh" title="Svensk Hälsokost">289 kr</span>
-      <span class="win">SK vinner</span>
-    </div><div class="deal-row">
-      <span class="prod">Whey Isolate 1 kg, vanilj</span>
-      <span class="price-sk" title="Svenskt Kosttillskott">329 kr</span>
-      <span class="price-sh" title="Svensk Hälsokost">349 kr</span>
-      <span class="win">SK vinner</span>
-    </div><div class="deal-row">
-      <span class="prod">Vegan Protein 750 g</span>
-      <span class="price-sk" title="Svenskt Kosttillskott">279 kr</span>
-      <span class="price-sh" title="Svensk Hälsokost">259 kr</span>
-      <span class="win">SH vinner</span>
-    </div><div class="deal-row">
-      <span class="prod">Casein 900 g, choklad</span>
-      <span class="price-sk" title="Svenskt Kosttillskott">289 kr</span>
-      <span class="price-sh" title="Svensk Hälsokost">309 kr</span>
-      <span class="win">SK vinner</span>
-    </div>
-        <div class="deal-row" style="background:var(--paper-alt); justify-content:center;">
-          <a href="priskategori/protein/" class="btn btn-sm btn-green" style="grid-column:1/-1;">Se hela protein-tabellen</a>
-        </div>
+      <div class="hero-meta">
+        <div class="stat"><span class="num">2</span><span class="lbl">Butiker spårade</span></div>
+        <div class="stat"><span class="num">29</span><span class="lbl">Produkter jämförda</span></div>
+        <div class="stat"><span class="num">6</span><span class="lbl">Pris-guider</span></div>
       </div>
     </div>
+    <aside class="hero-aside" aria-label="Aktuella priser">
+      <h3>Aktuella prisledare</h3>
+      <div class="snapshot-row">
+      <div>
+        <div class="prod">Core Vitamins Man 120 kaps</div>
+        <div class="winner">Lägst hos Svenskt Kosttillskott · spar 72 kr</div>
+      </div>
+      <div class="price">167<small>kr (ord. 239)</small></div>
+    </div><div class="snapshot-row">
+      <div>
+        <div class="prod">Core Vitamins Woman 120 kaps</div>
+        <div class="winner">Lägst hos Svenskt Kosttillskott · spar 72 kr</div>
+      </div>
+      <div class="price">167<small>kr (ord. 239)</small></div>
+    </div><div class="snapshot-row">
+      <div>
+        <div class="prod">Holistic Kreatin 400 g</div>
+        <div class="winner">Lägst hos Svensk Hälsokost · spar 57 kr</div>
+      </div>
+      <div class="price">226<small>kr (ord. 283)</small></div>
+    </div><div class="snapshot-row">
+      <div>
+        <div class="prod">Holistic Omega-3 Algolja 60 kaps</div>
+        <div class="winner">Lägst hos Svensk Hälsokost · spar 48 kr</div>
+      </div>
+      <div class="price">193<small>kr (ord. 241)</small></div>
+    </div>
+      <a href="priskategori/protein/" class="btn-link mt-2" style="display:inline-block;">Se hela jämförelsen &rarr;</a>
+    </aside>
   </div>
 </section>
 
-<section id="fynd">
+<section id="fynd" class="bg-alt">
   <div class="wrap">
     <div class="section-head">
       <h2>Veckans toppfynd</h2>
-      <div class="meta">5 rabatter med äkta pris-historik &middot; <span class="countdown">Erbjudande <span class="clk" data-countdown>00:00:00</span></span></div>
+      <div class="meta">Uppdaterat 17 maj 2026</div>
     </div>
     <div class="deal-grid"><div class="deal-tile">
-      <span class="save-badge">-27%</span>
-      <div class="from">Från Svensk Hälsokost</div>
-      <h3>Omega-3 Premium 120 kaps</h3>
-      <div class="price-row">
-        <span class="price">109 kr</span>
-        <span class="price-old">149 kr</span>
+      <div class="from">
+        <img src="assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott" class="from-logo">
+        <span>Svenskt Kosttillskott</span>
       </div>
-      <div class="price-save">Spar 40 kr just nu</div>
-      <a href="/go/svensk-halsokost/" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos SH &rarr;</a>
+      <h3>Core Vitamins Man 120 kaps</h3>
+      <div class="price-row">
+        <span class="price">167 kr</span>
+        <span class="price-old">239 kr</span>
+      </div>
+      <div class="price-save">Spara 72 kr</div>
+      <a href="/go/svenskt-kosttillskott/" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div><div class="deal-tile">
-      <span class="save-badge">-25%</span>
-      <div class="from">Från Svenskt Kosttillskott</div>
-      <h3>Omega-3 120 kapslar</h3>
-      <div class="price-row">
-        <span class="price">119 kr</span>
-        <span class="price-old">159 kr</span>
+      <div class="from">
+        <img src="assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost" class="from-logo">
+        <span>Svensk Hälsokost</span>
       </div>
-      <div class="price-save">Spar 40 kr just nu</div>
-      <a href="/go/svenskt-kosttillskott/" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos SK &rarr;</a>
+      <h3>Pureness Kreatin Creapure 250 g</h3>
+      <div class="price-row">
+        <span class="price">175 kr</span>
+        <span class="price-old">219 kr</span>
+      </div>
+      <div class="price-save">Spara 44 kr</div>
+      <a href="/go/svensk-halsokost/" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div><div class="deal-tile">
-      <span class="save-badge">-25%</span>
-      <div class="from">Från Svensk Hälsokost</div>
-      <h3>Multivitamin Komplett 90 st</h3>
-      <div class="price-row">
-        <span class="price">149 kr</span>
-        <span class="price-old">199 kr</span>
+      <div class="from">
+        <img src="assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott" class="from-logo">
+        <span>Svenskt Kosttillskott</span>
       </div>
-      <div class="price-save">Spar 50 kr just nu</div>
-      <a href="/go/svensk-halsokost/" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos SH &rarr;</a>
+      <h3>Core Creatine 300 g</h3>
+      <div class="price-row">
+        <span class="price">124 kr</span>
+        <span class="price-old">155 kr</span>
+      </div>
+      <div class="price-save">Spara 31 kr</div>
+      <a href="/go/svenskt-kosttillskott/" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div><div class="deal-tile">
-      <span class="save-badge">-24%</span>
-      <div class="from">Från Svenskt Kosttillskott</div>
-      <h3>SK Whey 1 kg</h3>
-      <div class="price-row">
-        <span class="price">249 kr</span>
-        <span class="price-old">329 kr</span>
+      <div class="from">
+        <img src="assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost" class="from-logo">
+        <span>Svensk Hälsokost</span>
       </div>
-      <div class="price-save">Spar 80 kr just nu</div>
-      <a href="/go/svenskt-kosttillskott/" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos SK &rarr;</a>
+      <h3>Holistic Vassleprotein 750 g</h3>
+      <div class="price-row">
+        <span class="price">264 kr</span>
+        <span class="price-old">330 kr</span>
+      </div>
+      <div class="price-save">Spara 66 kr</div>
+      <a href="/go/svensk-halsokost/" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div><div class="deal-tile">
-      <span class="save-badge">-23%</span>
-      <div class="from">Från Svenskt Kosttillskott</div>
-      <h3>Pre-Workout Hardcore</h3>
-      <div class="price-row">
-        <span class="price">269 kr</span>
-        <span class="price-old">349 kr</span>
+      <div class="from">
+        <img src="assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost" class="from-logo">
+        <span>Svensk Hälsokost</span>
       </div>
-      <div class="price-save">Spar 80 kr just nu</div>
-      <a href="/go/svenskt-kosttillskott/" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos SK &rarr;</a>
+      <h3>Holistic Omega-3 Algolja 60 kaps</h3>
+      <div class="price-row">
+        <span class="price">193 kr</span>
+        <span class="price-old">241 kr</span>
+      </div>
+      <div class="price-save">Spara 48 kr</div>
+      <a href="/go/svensk-halsokost/" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>Butikerna vi jämför</h2><div class="meta">Två svenska e-handlare, jämbördigt rankade</div></div>
+    <div class="shop-compare">
+    <div class="shop-card">
+      <div class="brand">
+        <img src="assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott" class="brand-logo">
+        <h3>Svenskt Kosttillskott</h3>
+      </div>
+      <p class="tagline">Sportkost-fokus med eget Core-märke. Vassast kampanjer på basvaror som protein och kreatin.</p>
+      <ul>
+        <li>Eget Core-märke ger lägst grundpris på whey, kreatin, BCAA och omega-3</li><li>Återkommande kampanjer på Core-serien — ofta 20–30 % rabatt</li><li>Brett urval av sportnutrition: RAW, Optimum Nutrition, Bodylab, Trainimal</li>
+      </ul>
+      <a class="btn btn-block" href="butik/svenskt-kosttillskott/">Läs mer om butiken &rarr;</a>
+    </div>
+    <div class="shop-card">
+      <div class="brand">
+        <img src="assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost" class="brand-logo">
+        <h3>Svensk Hälsokost</h3>
+      </div>
+      <p class="tagline">Hälsofokus med starkt utbud av vitaminer, omega-3 och naturmedel. Premium-serier som Holistic, Healthwell och Thorne.</p>
+      <ul>
+        <li>Bredast urval av vitaminer, mineraler och adaptogener</li><li>Premium-omega och algoljor från Holistic, ArcticMed och Minami</li><li>Specialistmärken som Thorne och Better You till stamkundspris</li>
+      </ul>
+      <a class="btn btn-block" href="butik/svensk-halsokost/">Läs mer om butiken &rarr;</a>
     </div></div>
   </div>
 </section>
 
 <section class="bg-alt">
   <div class="wrap">
-    <div class="section-head"><h2>Butikerna vi jämför</h2><div class="meta">2 partners &middot; ingen primär</div></div>
-    <div class="shop-compare">
-    <div class="shop-card">
-      <div class="brand">
-        <div class="badge" style="background:#00C853">SK</div>
-        <h3>Svenskt Kosttillskott</h3>
-      </div>
-      <p class="tagline">Brett sortiment och snabba kampanjer – ofta lägst pris på protein och kreatin.</p>
-      <ul>
-        <li>Aggressiv kampanjkalender – nya rea-priser nästan varje vecka</li><li>Eget märke (SK Nutrition) ger lägst grundpris på basvaror</li><li>Fri frakt från låg ordertröskel</li>
-      </ul>
-      <a class="btn btn-block" href="butik/svenskt-kosttillskott/">Se pris-DNA &rarr;</a>
-    </div>
-    <div class="shop-card">
-      <div class="brand">
-        <div class="badge" style="background:#FF6D00">SH</div>
-        <h3>Svensk Hälsokost</h3>
-      </div>
-      <p class="tagline">Stort hälso-sortiment, ofta vassast pris på vitaminer och premiumserier.</p>
-      <ul>
-        <li>Brett urval av vitaminer, mineraler och adaptogener</li><li>Många premiumvarumärken till medlemspris</li><li>Stamkundspoäng (5 %) gör återköp billigare</li>
-      </ul>
-      <a class="btn btn-block" href="butik/svensk-halsokost/">Se pris-DNA &rarr;</a>
-    </div></div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head"><h2>Priskategorier</h2><div class="meta">Jämför per typ av tillskott</div></div>
+    <div class="section-head"><h2>Bläddra per kategori</h2><div class="meta">Jämför priset på den produkttyp du letar efter</div></div>
     <div class="cat-grid">
     <a class="cat-tile" href="priskategori/protein/">
-      <div class="num">05</div>
+      <div class="num">01</div>
       <h3>Proteinpulver</h3>
-      <p>Jämför pris &rarr;</p>
+      <p>5 produkter jämförda</p>
     </a>
     <a class="cat-tile" href="priskategori/kreatin/">
-      <div class="num">04</div>
+      <div class="num">02</div>
       <h3>Kreatin</h3>
-      <p>Jämför pris &rarr;</p>
-    </a>
-    <a class="cat-tile" href="priskategori/gainer/">
-      <div class="num">03</div>
-      <h3>Gainer &amp; viktökare</h3>
-      <p>Jämför pris &rarr;</p>
-    </a>
-    <a class="cat-tile" href="priskategori/pre-workout/">
-      <div class="num">03</div>
-      <h3>Pre-workout</h3>
-      <p>Jämför pris &rarr;</p>
+      <p>6 produkter jämförda</p>
     </a>
     <a class="cat-tile" href="priskategori/vitaminer/">
-      <div class="num">04</div>
-      <h3>Vitaminer &amp; mineraler</h3>
-      <p>Jämför pris &rarr;</p>
+      <div class="num">03</div>
+      <h3>Multivitamin</h3>
+      <p>6 produkter jämförda</p>
     </a>
     <a class="cat-tile" href="priskategori/bcaa/">
-      <div class="num">03</div>
+      <div class="num">04</div>
       <h3>BCAA &amp; aminosyror</h3>
-      <p>Jämför pris &rarr;</p>
+      <p>6 produkter jämförda</p>
     </a>
     <a class="cat-tile" href="priskategori/omega3/">
-      <div class="num">03</div>
+      <div class="num">05</div>
       <h3>Omega-3 &amp; fettsyror</h3>
-      <p>Jämför pris &rarr;</p>
+      <p>6 produkter jämförda</p>
     </a></div>
   </div>
 </section>
 
-<section class="bg-ink">
-  <div class="wrap">
-    <div class="section-head"><h2>Vet du inte vilken butik som passar dig?</h2><div class="meta">2 minuter, 5 frågor</div></div>
-    <p style="max-width:640px;">Vårt pris-quiz tittar på din månadsbudget, vad du handlar och hur ofta du köper – och rekommenderar den butik där just du sparar mest över ett år.</p>
-    <p><a href="quiz/" class="btn">Gör quizet &rarr;</a></p>
-  </div>
-</section>
-
 <section>
   <div class="wrap">
-    <div class="section-head"><h2>Pris-guider</h2><div class="meta">Senaste fynd-analyserna</div></div>
+    <div class="section-head"><h2>Pris-guider</h2><div class="meta">Senaste analyserna från redaktionen</div></div>
     <div class="article-grid">
-    <a class="article-card" href="erbjudande/basta-proteinpriset-2026/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-05-14</div>
-        <h3>Bästa proteinpriset just nu – stor jämförelse 2026</h3>
-        <p>Vi pris-testar whey, isolat och vegan-protein hos Svenskt Kosttillskott och Svensk Hälsokost. Här är var kilopriset är lägst denna vecka.</p>
-      </div>
+    <a class="article-card" href="erbjudande/samma-agare-olika-kampanjer/">
+      <div class="date">15 maj 2026</div>
+      <h3>Samma ägare, olika kampanjer — så fungerar Sveriges två största kosttillskottsbutiker</h3>
+      <p>Svenskt Kosttillskott och Svensk Hälsokost ägs av samma koncern. Här är varför det fortfarande lönar sig att jämföra pris mellan butikerna.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>
-    <a class="article-card" href="erbjudande/spara-pa-kreatin-fyndguide/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-05-09</div>
-        <h3>Spara upp till 40 % på kreatin – fynd-guide maj 2026</h3>
-        <p>Kreatin är samma molekyl överallt – så varför betala fullpris? Vår fynd-guide visar var 500 g och 1 kg är billigast just nu.</p>
-      </div>
+    <a class="article-card" href="erbjudande/kreatin-pris-maj-2026/">
+      <div class="date">14 maj 2026</div>
+      <h3>Kreatin-priserna i maj 2026 — där prisjämförelsen sparar mest</h3>
+      <p>Pris-test på Core Creatine, Healthwell, Holistic och Pureness Creapure. Här är vart 500 g och kapslar är billigast just nu.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>
-    <a class="article-card" href="erbjudande/prisjamforelse-vitaminer-2026/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-05-06</div>
-        <h3>Pris-test: Vitaminer &amp; mineraler maj 2026</h3>
-        <p>Multivitamin, D3, magnesium, zink – pris-jämförelse mellan Svenskt Kosttillskott och Svensk Hälsokost.</p>
-      </div>
+    <a class="article-card" href="erbjudande/multivitamin-priser-2026/">
+      <div class="date">12 maj 2026</div>
+      <h3>Multivitamin maj 2026: Core Vitamins 30 % billigare hos Svenskt Kosttillskott</h3>
+      <p>Prisjämförelse på Core Vitamins och Healthwell-multivitaminerna. En äkta skillnad värd att klicka på.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>
-    <a class="article-card" href="erbjudande/pre-workout-test-2026/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-05-02</div>
-        <h3>Pre-workout 2026 – pris per portion, inte pris per burk</h3>
-        <p>Vi räknade om alla burkar till pris per portion. Resultatet förändrar vilken pre-workout som faktiskt är billigast.</p>
-      </div>
+    <a class="article-card" href="erbjudande/omega3-jamforelse-2026/">
+      <div class="date">10 maj 2026</div>
+      <h3>Omega-3 i maj 2026: var hittar du de bästa pris-fynden?</h3>
+      <p>Vi jämför Healthwell, Holistic, ArcticMed och Core omega-3 mellan butikerna. Premium-algoljor är just nu billigare hos Svensk Hälsokost.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>
-    <a class="article-card" href="erbjudande/veckans-toppfynd/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-05-12</div>
-        <h3>Veckans toppfynd – fem rabatter som faktiskt är värda att klicka</h3>
-        <p>Vi har sållat bland alla kampanjer och valt fem produkter där pris-historiken visar att rabatten är äkta.</p>
-      </div>
+    <a class="article-card" href="erbjudande/fraktrosk-svenska-halsogruppen/">
+      <div class="date">8 maj 2026</div>
+      <h3>Fraktrösk-strategi: så fyller du ordern utan att betala leveransen</h3>
+      <p>Båda butikerna har fri frakt över en viss tröskel. Med rätt strategi når du den utan att överköpa.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>
-    <a class="article-card" href="erbjudande/fraktrosk-strategi/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">2026-04-28</div>
-        <h3>Fraktrösk-strategi: så slipper du betala 49 kr för leveransen</h3>
-        <p>Båda butikerna har fri frakt över en viss tröskel. Med rätt strategi når du den utan att överköpa.</p>
-      </div>
+    <a class="article-card" href="erbjudande/veckans-kampanjer-maj-2026/">
+      <div class="date">17 maj 2026</div>
+      <h3>Veckans äkta kampanjer (maj 2026) — där priset faktiskt skiljer sig</h3>
+      <p>Fem produkter där prisskillnaden mellan butikerna är verklig och värd att klicka på.</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a></div>
   </div>
 </section>
@@ -307,7 +281,7 @@
         <li><a href="./priskategori/kreatin/">Kreatin</a></li>
         <li><a href="./priskategori/vitaminer/">Vitaminer</a></li>
         <li><a href="./priskategori/pre-workout/">Pre-workout</a></li>
-        <li><a href="./erbjudande/veckans-toppfynd/">Veckans toppfynd</a></li>
+        <li><a href="./erbjudande/veckans-kampanjer-maj-2026/">Veckans kampanjer</a></li>
       </ul>
     </div>
     <div>
@@ -315,7 +289,6 @@
       <ul>
         <li><a href="./butik/svenskt-kosttillskott/">Svenskt Kosttillskott</a></li>
         <li><a href="./butik/svensk-halsokost/">Svensk Hälsokost</a></li>
-        <li><a href="./quiz/">Hitta din matchning</a></li>
       </ul>
     </div>
     <div>

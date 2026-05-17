@@ -13,8 +13,9 @@ function categoryPage(cat) {
   // Räkna ut samlade fakta för intro
   const totalProducts = cat.products.length;
   let skWins = 0, shWins = 0, ties = 0;
-  let maxSave = 0, maxSaveProd = '';
+  let maxSave = 0, maxSaveProd = '–';
   cat.products.forEach(p => {
+    if (p.sk == null || p.sh == null) return; // exklusiva produkter räknas inte i vinster
     if (p.sk < p.sh) skWins++;
     else if (p.sh < p.sk) shWins++;
     else ties++;
@@ -45,34 +46,34 @@ function categoryPage(cat) {
   const relatedLinks = CATEGORIES
     .filter(c => c.id !== cat.id)
     .slice(0, 6)
-    .map(c => `<a class="cat-tile" href="../${c.id}/"><div class="num">${String(c.products.length).padStart(2, '0')}</div><h3>${L.escapeHtml(c.name)}</h3><p>Pris-jämförelse</p></a>`)
+    .map((c, i) => `<a class="cat-tile" href="../${c.id}/"><div class="num">${String(i + 1).padStart(2, '0')}</div><h3>${L.escapeHtml(c.name)}</h3><p>${c.products.length} produkter jämförda</p></a>`)
     .join('');
 
   const body = `
 ${L.header(2, 'cats')}
 ${L.breadcrumbsHtml(crumbs, 2)}
 
-<section style="padding-top:24px;">
+<section>
   <div class="wrap">
-    <div class="hero-tag">Priskategori</div>
-    <h1>${L.escapeHtml(cat.name)} – var är priset lägst?</h1>
+    <span class="eyebrow">Priskategori</span>
+    <h1>${L.escapeHtml(cat.name)} — <em>var är priset lägst?</em></h1>
     <p class="hero-sub">${L.escapeHtml(cat.intro)}</p>
     <p class="text-mute" style="font-size:.92rem;"><strong>Användning:</strong> ${L.escapeHtml(cat.intent)}</p>
     <div class="hero-actions">
       <a href="#tabell" class="btn">Gå till pris-tabellen</a>
-      <a href="../../quiz/" class="btn btn-ghost">Hitta din butik via quiz</a>
+      <a href="../../butik/svenskt-kosttillskott/" class="btn-link">Läs om butikerna &rarr;</a>
     </div>
   </div>
 </section>
 
 <section class="bg-alt">
   <div class="wrap">
-    <div class="section-head"><h2>Snabbfakta</h2><div class="meta">Statistik från dagens jämförelse</div></div>
+    <div class="section-head"><h2>Snabbfakta</h2><div class="meta">Från dagens jämförelse</div></div>
     <div class="cat-grid">
-      <div class="cat-tile"><div class="num">${totalProducts}</div><h3>Produkter jämförda</h3><p>I denna kategori</p></div>
-      <div class="cat-tile"><div class="num">${skWins}</div><h3>Svenskt Kosttillskott vinner</h3><p>Av ${totalProducts} produkter</p></div>
-      <div class="cat-tile"><div class="num">${shWins}</div><h3>Svensk Hälsokost vinner</h3><p>Av ${totalProducts} produkter</p></div>
-      <div class="cat-tile"><div class="num">${maxSave} kr</div><h3>Största prisskillnad</h3><p>${L.escapeHtml(maxSaveProd)}</p></div>
+      <div class="cat-tile"><div class="num">${String(totalProducts).padStart(2,'0')}</div><h3>Produkter jämförda</h3><p>I denna kategori</p></div>
+      <div class="cat-tile"><div class="num">${String(ties).padStart(2,'0')}</div><h3>Identiskt pris</h3><p>Båda butikerna lika</p></div>
+      <div class="cat-tile"><div class="num">${String(skWins + shWins).padStart(2,'0')}</div><h3>Pris skiljer sig</h3><p>${skWins} hos Svenskt Kosttillskott · ${shWins} hos Svensk Hälsokost</p></div>
+      <div class="cat-tile"><div class="num">${maxSave > 0 ? maxSave + ' kr' : '–'}</div><h3>Största skillnad</h3><p>${L.escapeHtml(maxSaveProd)}</p></div>
     </div>
   </div>
 </section>
@@ -83,7 +84,7 @@ ${L.breadcrumbsHtml(crumbs, 2)}
       <h2>Pris-tabell ${L.escapeHtml(cat.name.toLowerCase())}</h2>
       <div class="meta">Uppdaterat ${new Date().toISOString().slice(0,10)}</div>
     </div>
-    ${L.priceTableHtml(cat.products)}
+    ${L.priceTableHtml(cat.products, 2)}
     <p class="disclosure mt-3">Priserna uppdateras manuellt och kan skilja sig från butikens dagspris. Klicka alltid igenom för att se aktuell prislapp innan köp.</p>
   </div>
 </section>

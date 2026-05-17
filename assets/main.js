@@ -10,26 +10,6 @@
   }
 })();
 
-// Countdown — "erbjudande löper ut" (visuell brådska, nollas vid midnatt)
-(function () {
-  var nodes = document.querySelectorAll('[data-countdown]');
-  if (!nodes.length) return;
-  function tick() {
-    var now = new Date();
-    var end = new Date(now);
-    end.setHours(23, 59, 59, 0);
-    var diff = Math.max(0, end - now);
-    var h = String(Math.floor(diff / 3600000)).padStart(2, '0');
-    var m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-    var s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-    nodes.forEach(function (n) {
-      n.textContent = h + ':' + m + ':' + s;
-    });
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
-
 // Pretty-link redirect (används på /go/<id>/index.html)
 window.__redirectPretty = function (id) {
   try {

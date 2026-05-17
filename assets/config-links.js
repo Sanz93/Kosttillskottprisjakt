@@ -1,6 +1,6 @@
 // Riktiga affiliate-URL:er fylls i manuellt.
 // Lämna placeholders så pretty-links fortfarande fungerar för crawl-tester.
 window.REAL_LINKS = {
-  svenskt_kosttillskott: "https://www.svensktkosttillskott.se/?utm_source=kosttillskottprisjakt&utm_medium=affiliate",
-  svensk_halsokost:      "https://www.svenskhalsokost.se/?utm_source=kosttillskottprisjakt&utm_medium=affiliate"
+  svenskt_kosttillskott: "https://ion.svensktkosttillskott.se/t/t?a=1951492419&as=2008851212&t=2&tk=1", //adtraction
+  svensk_halsokost:      "https://go.svenskhalsokost.se/t/t?a=1951492533&as=2008851212&t=2&tk=1" //adtraction
 };

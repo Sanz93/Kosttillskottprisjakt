@@ -52,10 +52,11 @@ function head({ title, description, canonical, ogImage, depth, jsonLd, extraHead
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeAttr(title)}">
   <meta name="twitter:description" content="${escapeAttr(description)}">
-  <link rel="icon" type="image/svg+xml" href="${r}assets/favicon.svg">
+  <link rel="icon" type="image/png" href="${r}assets/logos/favicon.png">
+  <link rel="apple-touch-icon" href="${r}assets/logos/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="${r}assets/styles.css">
   ${ld}
   ${extraHead || ''}
@@ -71,25 +72,17 @@ function header(depth, activePath) {
   };
   return `
 <header class="site-header">
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span><span class="pop">●</span> Lägsta proteinpriset just nu: 249 kr / kilo &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Kreatin från 33 öre / gram &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Premium-omega 209 kr (normalt 269 kr) &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Veckans toppfynd uppdaterade &nbsp;&nbsp;</span>
-      <span><span class="pop">●</span> Pris-spårning sedan 2024 &nbsp;&nbsp;</span>
-    </div>
-  </div>
   <div class="wrap nav">
-    <a href="${r}" class="nav-logo">Kosttillskott<span class="accent">prisjakt</span><span class="dot">.</span></a>
+    <a href="${r}" class="nav-logo" aria-label="Kosttillskottprisjakt – startsida">
+      <img src="${r}assets/logos/kosttillskottprisjakt.png" alt="Kosttillskottprisjakt" class="nav-logo-img">
+    </a>
     <button class="menu-toggle" aria-label="Meny" aria-expanded="false">&#9776;</button>
     <ul class="nav-links">
       ${link('priskategori/protein/',        'Priskategorier', 'cats')}
       ${link('butik/svenskt-kosttillskott/', 'Butiker',        'shops')}
-      ${link('erbjudande/veckans-toppfynd/', 'Erbjudanden',    'deals')}
-      ${link('quiz/',                        'Quiz',           'quiz')}
+      ${link('erbjudande/veckans-kampanjer-maj-2026/', 'Pris-guider',    'deals')}
+      ${link('metodik/',                     'Metodik',        'methodology')}
       ${link('om/',                          'Om oss',         'about')}
-      ${link('quiz/',                        'Hitta bästa pris', 'cta', 'nav-cta')}
     </ul>
   </div>
 </header>`;
@@ -111,7 +104,7 @@ function footer(depth) {
         <li><a href="${r}priskategori/kreatin/">Kreatin</a></li>
         <li><a href="${r}priskategori/vitaminer/">Vitaminer</a></li>
         <li><a href="${r}priskategori/pre-workout/">Pre-workout</a></li>
-        <li><a href="${r}erbjudande/veckans-toppfynd/">Veckans toppfynd</a></li>
+        <li><a href="${r}erbjudande/veckans-kampanjer-maj-2026/">Veckans kampanjer</a></li>
       </ul>
     </div>
     <div>
@@ -119,7 +112,6 @@ function footer(depth) {
       <ul>
         <li><a href="${r}butik/svenskt-kosttillskott/">Svenskt Kosttillskott</a></li>
         <li><a href="${r}butik/svensk-halsokost/">Svensk Hälsokost</a></li>
-        <li><a href="${r}quiz/">Hitta din matchning</a></li>
       </ul>
     </div>
     <div>
@@ -218,32 +210,50 @@ function articleJsonLd({ title, description, slug, published }) {
   };
 }
 
-function priceTableHtml(products) {
+function priceTableHtml(products, depth) {
+  const r = rel(depth || 0);
   const rows = products.map(p => {
-    const sk = Number(p.sk);
-    const sh = Number(p.sh);
-    const winner = sk < sh ? 'SK' : (sh < sk ? 'SH' : '–');
-    const save = Math.abs(sk - sh);
-    const savePct = Math.round((save / Math.max(sk, sh)) * 100);
+    const sk = p.sk == null ? null : Number(p.sk);
+    const sh = p.sh == null ? null : Number(p.sh);
+    const skCell = sk == null ? '<span class="text-mute">–</span>' : `${sk} kr`;
+    const shCell = sh == null ? '<span class="text-mute">–</span>' : `${sh} kr`;
+
+    let winnerLabel, winnerSlug, saveLine;
+    if (sk == null && sh != null) {
+      winnerLabel = 'Endast Svensk Hälsokost'; winnerSlug = 'svensk-halsokost'; saveLine = '';
+    } else if (sh == null && sk != null) {
+      winnerLabel = 'Endast Svenskt Kosttillskott'; winnerSlug = 'svenskt-kosttillskott'; saveLine = '';
+    } else if (sk < sh) {
+      winnerLabel = 'Svenskt Kosttillskott'; winnerSlug = 'svenskt-kosttillskott';
+      saveLine = `<div class="save">spar ${sh - sk} kr (${Math.round(((sh - sk) / sh) * 100)}%)</div>`;
+    } else if (sh < sk) {
+      winnerLabel = 'Svensk Hälsokost'; winnerSlug = 'svensk-halsokost';
+      saveLine = `<div class="save">spar ${sk - sh} kr (${Math.round(((sk - sh) / sk) * 100)}%)</div>`;
+    } else {
+      winnerLabel = null; winnerSlug = null; saveLine = '';
+    }
+
+    const winCell = winnerLabel
+      ? `<span class="win">${winnerLabel}</span>${saveLine}`
+      : '<span class="text-mute">Lika pris</span>';
+    const ctaCell = winnerSlug
+      ? `<a class="btn btn-sm" rel="nofollow sponsored" target="_blank" href="${r}go/${winnerSlug}/">Till butiken</a>`
+      : `<a class="btn btn-sm btn-ghost" rel="nofollow sponsored" target="_blank" href="${r}go/svenskt-kosttillskott/">Välj butik</a>`;
+
     return `<tr>
       <td><strong>${escapeHtml(p.name)}</strong><br><span class="text-mute" style="font-size:.85rem;">${escapeHtml(p.unit || '')}</span></td>
-      <td class="num sk">${sk} kr</td>
-      <td class="num sh">${sh} kr</td>
-      <td>${winner === '–'
-          ? '<span class="text-mute">Lika</span>'
-          : `<span class="win">${winner === 'SK' ? 'Svenskt Kosttillskott' : 'Svensk Hälsokost'}</span>
-             <div class="save">spar ${save} kr (${savePct}%)</div>`
-        }</td>
-      <td>
-        <a class="btn btn-sm btn-green" rel="nofollow sponsored" target="_blank" href="/go/${winner === 'SK' ? 'svenskt-kosttillskott' : (winner === 'SH' ? 'svensk-halsokost' : 'svenskt-kosttillskott')}/">Köp billigast</a>
-      </td>
+      <td class="num">${skCell}</td>
+      <td class="num">${shCell}</td>
+      <td>${winCell}</td>
+      <td>${ctaCell}</td>
     </tr>`;
   }).join('\n');
+
   return `<div class="price-table-wrap"><table class="price-table">
     <thead><tr>
       <th>Produkt</th>
-      <th>Svenskt Kosttillskott</th>
-      <th>Svensk Hälsokost</th>
+      <th><img src="${r}assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott" class="th-logo"><span class="th-label">Svenskt Kosttillskott</span></th>
+      <th><img src="${r}assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost" class="th-logo"><span class="th-label">Svensk Hälsokost</span></th>
       <th>Billigast</th>
       <th></th>
     </tr></thead>

@@ -5,6 +5,12 @@ const { CATEGORIES } = require('./assets/categories.js');
 const { ARTICLES } = require('./assets/articles.js');
 const L = require('./build-lib.js');
 
+const MONTHS = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+}
+
 /* ============================================================
    FRONTPAGE
    ============================================================ */
@@ -26,60 +32,66 @@ function buildIndex() {
   }))).sort((a, b) => (b.save / b.normal) - (a.save / a.normal)).slice(0, 5);
 
   const dealTiles = allDeals.map(d => {
-    const pct = Math.round((d.save / d.normal) * 100);
     return `<div class="deal-tile">
-      <span class="save-badge">-${pct}%</span>
-      <div class="from">Från ${L.escapeHtml(d.shop.name)}</div>
+      <div class="from">
+        <img src="assets/logos/${d.shop.slug}.png" alt="${L.escapeAttr(d.shop.name)}" class="from-logo">
+        <span>${L.escapeHtml(d.shop.name)}</span>
+      </div>
       <h3>${L.escapeHtml(d.name)}</h3>
       <div class="price-row">
         <span class="price">${d.price} kr</span>
         <span class="price-old">${d.normal} kr</span>
       </div>
-      <div class="price-save">Spar ${d.save} kr just nu</div>
-      <a href="${d.shop.pretty_link}" class="btn btn-block mt-2" rel="nofollow sponsored" target="_blank">Köp hos ${L.escapeHtml(d.shop.short)} &rarr;</a>
+      <div class="price-save">Spara ${d.save} kr</div>
+      <a href="${d.shop.pretty_link}" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div>`;
   }).join('');
 
-  // Hero-comparison: 5 utvalda från första kategorin (protein) – tight tabell
-  const heroProducts = (CATEGORIES.find(c => c.id === 'protein').products).slice(0, 4);
+  // Hero-aside: 4 produkter med störst verklig prisskillnad just nu
+  const heroProducts = CATEGORIES
+    .flatMap(c => c.products.filter(p => p.sk != null && p.sh != null && p.sk !== p.sh))
+    .map(p => ({ ...p, diff: Math.abs(p.sk - p.sh) }))
+    .sort((a, b) => b.diff - a.diff)
+    .slice(0, 4);
   const heroRows = heroProducts.map(p => {
-    const winner = p.sk < p.sh ? 'SK' : (p.sh < p.sk ? 'SH' : '=');
-    return `<div class="deal-row">
-      <span class="prod">${L.escapeHtml(p.name)}</span>
-      <span class="price-sk" title="Svenskt Kosttillskott">${p.sk} kr</span>
-      <span class="price-sh" title="Svensk Hälsokost">${p.sh} kr</span>
-      <span class="win">${winner === 'SK' ? 'SK vinner' : (winner === 'SH' ? 'SH vinner' : 'Lika')}</span>
+    const winnerShop = p.sk < p.sh ? 'Svenskt Kosttillskott' : 'Svensk Hälsokost';
+    const winnerPrice = Math.min(p.sk, p.sh);
+    const otherPrice = Math.max(p.sk, p.sh);
+    return `<div class="snapshot-row">
+      <div>
+        <div class="prod">${L.escapeHtml(p.name)}</div>
+        <div class="winner">Lägst hos ${L.escapeHtml(winnerShop)} · spar ${p.diff} kr</div>
+      </div>
+      <div class="price">${winnerPrice}<small>kr (ord. ${otherPrice})</small></div>
     </div>`;
   }).join('');
 
-  const catTiles = CATEGORIES.map(c => `
+  const catTiles = CATEGORIES.map((c, i) => `
     <a class="cat-tile" href="priskategori/${c.id}/">
-      <div class="num">${String(c.products.length).padStart(2, '0')}</div>
+      <div class="num">${String(i + 1).padStart(2, '0')}</div>
       <h3>${L.escapeHtml(c.name)}</h3>
-      <p>Jämför pris &rarr;</p>
+      <p>${c.products.length} produkter jämförda</p>
     </a>`).join('');
 
   const articleCards = ARTICLES.slice(0, 6).map(a => `
     <a class="article-card" href="erbjudande/${a.slug}/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">${L.escapeHtml(a.published)}</div>
-        <h3>${L.escapeHtml(a.title)}</h3>
-        <p>${L.escapeHtml(a.meta)}</p>
-      </div>
+      <div class="date">${L.escapeHtml(formatDate(a.published))}</div>
+      <h3>${L.escapeHtml(a.title)}</h3>
+      <p>${L.escapeHtml(a.meta)}</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>`).join('');
 
   const shopCompareCards = SHOPS.map(s => `
     <div class="shop-card">
       <div class="brand">
-        <div class="badge" style="background:${s.color}">${L.escapeHtml(s.short)}</div>
+        <img src="assets/logos/${s.slug}.png" alt="${L.escapeAttr(s.name)}" class="brand-logo">
         <h3>${L.escapeHtml(s.name)}</h3>
       </div>
       <p class="tagline">${L.escapeHtml(s.tagline)}</p>
       <ul>
         ${s.strengths.slice(0, 3).map(x => `<li>${L.escapeHtml(x)}</li>`).join('')}
       </ul>
-      <a class="btn btn-block" href="butik/${s.slug}/">Se pris-DNA &rarr;</a>
+      <a class="btn btn-block" href="butik/${s.slug}/">Läs mer om butiken &rarr;</a>
     </div>`).join('');
 
   const body = `
@@ -88,65 +100,54 @@ ${L.header(0, 'home')}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-tag">Uppdaterat ${new Date().toISOString().slice(0,10)}</div>
-      <h1>Hitta <span class="hl">lägsta priset</span> på kosttillskott – varje vecka.</h1>
-      <p class="hero-sub">Vi jämför pris mellan Sveriges två största kosttillskottsbutiker så du slipper växla mellan flikar. Klicka direkt till billigast burk – ingen prut, ingen gissning.</p>
+      <span class="eyebrow">Sveriges prisjämförelse för kosttillskott</span>
+      <h1>Olika kampanjer, samma katalog — <em>vi visar var det är billigast.</em></h1>
+      <p class="hero-sub">Svenskt Kosttillskott och Svensk Hälsokost ägs av samma koncern men roterar kampanjer oberoende. Vi spårar de viktigaste produkterna och visar vilken butik som har dem billigast just nu.</p>
       <div class="hero-actions">
         <a href="#fynd" class="btn">Se veckans toppfynd</a>
-        <a href="quiz/" class="btn btn-ghost">Gör pris-quizet</a>
+        <a href="priskategori/protein/" class="btn-link">Bläddra alla kategorier &rarr;</a>
       </div>
-      <p class="text-mute mt-3" style="font-size:.88rem;">2 partnerbutiker &middot; 7 priskategorier &middot; ${ARTICLES.length} pris-guider</p>
-    </div>
-    <div>
-      <div class="deal-card">
-        <div class="deal-card-head">
-          <span class="title">Live · proteinpriser idag</span>
-          <span class="badge">Hetast just nu</span>
-        </div>
-        ${heroRows}
-        <div class="deal-row" style="background:var(--paper-alt); justify-content:center;">
-          <a href="priskategori/protein/" class="btn btn-sm btn-green" style="grid-column:1/-1;">Se hela protein-tabellen</a>
-        </div>
+      <div class="hero-meta">
+        <div class="stat"><span class="num">2</span><span class="lbl">Butiker spårade</span></div>
+        <div class="stat"><span class="num">${CATEGORIES.reduce((a, c) => a + c.products.length, 0)}</span><span class="lbl">Produkter jämförda</span></div>
+        <div class="stat"><span class="num">${ARTICLES.length}</span><span class="lbl">Pris-guider</span></div>
       </div>
     </div>
+    <aside class="hero-aside" aria-label="Aktuella priser">
+      <h3>Aktuella prisledare</h3>
+      ${heroRows}
+      <a href="priskategori/protein/" class="btn-link mt-2" style="display:inline-block;">Se hela jämförelsen &rarr;</a>
+    </aside>
   </div>
 </section>
 
-<section id="fynd">
+<section id="fynd" class="bg-alt">
   <div class="wrap">
     <div class="section-head">
       <h2>Veckans toppfynd</h2>
-      <div class="meta">5 rabatter med äkta pris-historik &middot; <span class="countdown">Erbjudande <span class="clk" data-countdown>00:00:00</span></span></div>
+      <div class="meta">Uppdaterat ${formatDate(new Date().toISOString())}</div>
     </div>
     <div class="deal-grid">${dealTiles}</div>
   </div>
 </section>
 
-<section class="bg-alt">
+<section>
   <div class="wrap">
-    <div class="section-head"><h2>Butikerna vi jämför</h2><div class="meta">2 partners &middot; ingen primär</div></div>
+    <div class="section-head"><h2>Butikerna vi jämför</h2><div class="meta">Två svenska e-handlare, jämbördigt rankade</div></div>
     <div class="shop-compare">${shopCompareCards}</div>
   </div>
 </section>
 
-<section>
+<section class="bg-alt">
   <div class="wrap">
-    <div class="section-head"><h2>Priskategorier</h2><div class="meta">Jämför per typ av tillskott</div></div>
+    <div class="section-head"><h2>Bläddra per kategori</h2><div class="meta">Jämför priset på den produkttyp du letar efter</div></div>
     <div class="cat-grid">${catTiles}</div>
   </div>
 </section>
 
-<section class="bg-ink">
-  <div class="wrap">
-    <div class="section-head"><h2>Vet du inte vilken butik som passar dig?</h2><div class="meta">2 minuter, 5 frågor</div></div>
-    <p style="max-width:640px;">Vårt pris-quiz tittar på din månadsbudget, vad du handlar och hur ofta du köper – och rekommenderar den butik där just du sparar mest över ett år.</p>
-    <p><a href="quiz/" class="btn">Gör quizet &rarr;</a></p>
-  </div>
-</section>
-
 <section>
   <div class="wrap">
-    <div class="section-head"><h2>Pris-guider</h2><div class="meta">Senaste fynd-analyserna</div></div>
+    <div class="section-head"><h2>Pris-guider</h2><div class="meta">Senaste analyserna från redaktionen</div></div>
     <div class="article-grid">${articleCards}</div>
   </div>
 </section>
@@ -183,7 +184,7 @@ ${L.breadcrumbsHtml([{ name: "Hem", href: "" }, { name: "Pris-quiz" }], 1)}
 
 <section style="padding-top:24px;">
   <div class="wrap text-center">
-    <div class="hero-tag">2 min · 5 frågor</div>
+    <span class="eyebrow">2 min · 5 frågor</span>
     <h1>Vilken butik sparar <em style="color:var(--orange); font-style:normal;">just dig</em> mest?</h1>
     <p class="text-mute" style="max-width:560px; margin:0 auto;">Vi matchar din profil mot Svenskt Kosttillskott och Svensk Hälsokost.</p>
   </div>

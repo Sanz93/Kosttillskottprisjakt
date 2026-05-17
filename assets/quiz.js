@@ -50,6 +50,7 @@ const RESULTS = {
     name: "Svenskt Kosttillskott",
     text: "Baserat på dina svar maxar du sparpotentialen hos Svenskt Kosttillskott. Lägre baspris, aggressiv kampanjkalender och deras egen serie ger dig lägst pris per kilo – särskilt om du handlar tränings-tillskott.",
     pretty: "/go/svenskt-kosttillskott/",
+    logo: "/assets/logos/svenskt-kosttillskott.png",
     color: "#00C853"
   },
   sh: {
@@ -57,6 +58,7 @@ const RESULTS = {
     name: "Svensk Hälsokost",
     text: "Svensk Hälsokost är ditt bästa val. Bredare premium-sortiment, generösa stamkundspoäng och vassa vitaminpriser – din profil tjänar mest på deras setup.",
     pretty: "/go/svensk-halsokost/",
+    logo: "/assets/logos/svensk-halsokost.png",
     color: "#FF6D00"
   }
 };
@@ -100,7 +102,10 @@ const RESULTS = {
     root.innerHTML = ''
       + '<div class="quiz-result">'
         + '<div class="quiz-progress"><div class="bar" style="width:100%"></div></div>'
-        + '<h2 style="font-size:2rem; margin-top:0;">Din matchning: <span style="color:' + r.color + '">' + escapeHtml(r.name) + '</span></h2>'
+        + '<div style="text-align:center; margin-bottom:18px;">'
+          + '<img src="' + r.logo + '" alt="' + escapeHtml(r.name) + '" style="max-height:80px; width:auto; max-width:240px; object-fit:contain;">'
+        + '</div>'
+        + '<h2 style="font-size:2rem; margin-top:0; text-align:center;">Din matchning: <span style="color:' + r.color + '">' + escapeHtml(r.name) + '</span></h2>'
         + '<p style="font-size:1.05rem;">' + escapeHtml(r.text) + '</p>'
         + '<a href="' + r.pretty + '" id="quiz-cta" class="btn btn-block mt-3" rel="nofollow sponsored" target="_blank">Gå vidare till ' + escapeHtml(r.name) + ' &rarr;</a>'
         + '<button id="quiz-restart" class="btn btn-ghost btn-sm mt-3" style="display:block; margin:18px auto 0;">Gör om quizet</button>'

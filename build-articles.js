@@ -3,11 +3,17 @@ const { ARTICLES } = require('./assets/articles.js');
 const { SHOPS } = require('./assets/shops.js');
 const L = require('./build-lib.js');
 
+const MONTHS = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+}
+
 function articlePage(art) {
   const canonical = `${L.SITE.url}/erbjudande/${art.slug}/`;
   const crumbs = [
     { name: "Hem", href: "" },
-    { name: "Erbjudanden", href: "erbjudande/veckans-toppfynd/" },
+    { name: "Pris-guider", href: "erbjudande/veckans-kampanjer-maj-2026/" },
     { name: art.title }
   ];
   const ld = [
@@ -34,12 +40,10 @@ function articlePage(art) {
   const related = ARTICLES.filter(a => a.slug !== art.slug).slice(0, 3);
   const relatedCards = related.map(a => `
     <a class="article-card" href="../${a.slug}/">
-      <div class="img"><span class="price-tag">Pris-guide</span></div>
-      <div class="body">
-        <div class="date">${L.escapeHtml(a.published)}</div>
-        <h3>${L.escapeHtml(a.title)}</h3>
-        <p>${L.escapeHtml(a.meta)}</p>
-      </div>
+      <div class="date">${L.escapeHtml(formatDate(a.published))}</div>
+      <h3>${L.escapeHtml(a.title)}</h3>
+      <p>${L.escapeHtml(a.meta)}</p>
+      <span class="read">Läs guiden &rarr;</span>
     </a>`).join('');
 
   const body = `
@@ -48,10 +52,10 @@ ${L.breadcrumbsHtml(crumbs, 2)}
 
 <section class="article-hero">
   <div class="narrow">
-    <div class="hero-tag">Erbjudande &middot; pris-guide</div>
+    <span class="eyebrow">Pris-guide</span>
     <h1>${L.escapeHtml(art.title)}</h1>
-    <p class="article-meta">Publicerad ${L.escapeHtml(art.published)} &middot; <span class="countdown">Erbjudande löper ut <span class="clk" data-countdown>00:00:00</span></span></p>
-    <p style="font-size:1.1rem; color:var(--ink-soft);">${L.escapeHtml(art.lead)}</p>
+    <p class="article-meta">Publicerad ${L.escapeHtml(formatDate(art.published))}</p>
+    <p class="article-lead">${L.escapeHtml(art.lead)}</p>
   </div>
 </section>
 

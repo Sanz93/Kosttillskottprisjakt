@@ -34,6 +34,7 @@ function prettyLink(shop) {
 </head>
 <body>
   <div class="box">
+    <img src="/assets/logos/${shop.slug}.png" alt="${L.escapeAttr(shop.name)}" style="max-height:70px; width:auto; max-width:240px; object-fit:contain; margin-bottom:18px; background:#fff; padding:8px 14px; border-radius:8px;">
     <div class="dot"></div>
     <p style="margin-top:14px;">Vidarekoppling till <strong>${L.escapeHtml(shop.name)}</strong>...</p>
   </div>

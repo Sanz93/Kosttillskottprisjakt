@@ -73,18 +73,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/priskategori/gainer/</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kosttillskottprisjakt.se/priskategori/pre-workout/</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kosttillskottprisjakt.se/priskategori/vitaminer/</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -103,50 +91,38 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/basta-proteinpriset-2026/</loc>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/samma-agare-olika-kampanjer/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/kreatin-pris-maj-2026/</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/spara-pa-kreatin-fyndguide/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/prisjamforelse-vitaminer-2026/</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/pre-workout-test-2026/</loc>
-    <lastmod>2026-05-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/veckans-toppfynd/</loc>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/multivitamin-priser-2026/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/fraktrosk-strategi/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/omega3-jamforelse-2026/</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/kampanjkalender-2026/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/fraktrosk-svenska-halsogruppen/</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kosttillskottprisjakt.se/erbjudande/stamkundsprogram-test/</loc>
-    <lastmod>2026-04-18</lastmod>
+    <loc>https://kosttillskottprisjakt.se/erbjudande/veckans-kampanjer-maj-2026/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
