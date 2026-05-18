@@ -51,7 +51,7 @@
     var finalEl = document.getElementById("quiz-final");
     if (idx >= TOTAL_QUESTIONS) {
       if (finalEl) finalEl.style.display = "";
-      setProgress(TOTAL_QUESTIONS - 1);
+      setProgress(TOTAL_QUESTIONS);
       if (!skipScroll && finalEl) {
         window.scrollTo({ top: finalEl.offsetTop - 20, behavior: "smooth" });
       }

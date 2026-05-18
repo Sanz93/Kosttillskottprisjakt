@@ -815,45 +815,54 @@ section { padding: 80px 0; }
   color: var(--ink-mute);
   margin-bottom: 14px;
 }
-.quiz-final-shops-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.shop-cta-card {
+
+.shop-list {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+.shop-list-item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 22px 16px;
-  background: var(--surface);
+  gap: 18px;
+  padding: 14px 18px;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   text-decoration: none;
   color: var(--ink);
-  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  text-align: left;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
 }
-.shop-cta-card:hover {
+.shop-list-item:hover {
   border-color: var(--accent);
+  background: var(--accent-soft);
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
 }
-.shop-cta-card img {
-  height: 32px;
+.shop-list-item img {
+  height: 30px;
   width: auto;
-  max-width: 100%;
+  max-width: 90px;
+  max-height: 36px;
   object-fit: contain;
+  justify-self: center;
 }
-.shop-cta-btn {
+.shop-list-name {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.shop-list-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--accent);
-  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 /* ---------- QUIZ RESPONSIVE — tablet + mobile ---------- */
@@ -866,9 +875,10 @@ section { padding: 80px 0; }
   #quiz-final h2 { font-size: 1.45rem; }
   .quiz-code { padding: 20px 28px; margin: 20px auto 6px; }
   .quiz-code-value { font-size: 2.1rem; }
-  .shop-cta-card { padding: 18px 14px; gap: 12px; }
-  .shop-cta-card img { height: 26px; }
-  .shop-cta-btn { font-size: 0.85rem; }
+  .shop-list-item { grid-template-columns: 80px 1fr auto; padding: 12px 14px; gap: 14px; }
+  .shop-list-item img { height: 26px; max-width: 80px; }
+  .shop-list-name { font-size: 0.92rem; }
+  .shop-list-cta { font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {
@@ -879,9 +889,22 @@ section { padding: 80px 0; }
   #quiz-final h2 { font-size: 1.3rem; }
   .quiz-code-value { font-size: 1.85rem; letter-spacing: 0.06em; }
   .quiz-code { padding: 16px 22px; min-width: 180px; }
-  .quiz-final-shops-grid { grid-template-columns: 1fr; gap: 10px; }
-  .shop-cta-card { flex-direction: row; justify-content: space-between; padding: 14px 18px; gap: 14px; }
-  .shop-cta-card img { height: 24px; max-width: 50%; }
+  .shop-list-item { grid-template-columns: 60px 1fr auto; gap: 10px; padding: 11px 12px; }
+  .shop-list-item img { height: 22px; max-width: 60px; }
+  .shop-list-name { font-size: 0.86rem; }
+  .shop-list-cta { font-size: 0.8rem; }
+}
+
+/* Mycket smal mobil — stacka rad-innehållet vertikalt */
+@media (max-width: 360px) {
+  .shop-list-item {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 14px;
+  }
+  .shop-list-item img { margin: 0 auto; }
 }
 
 /* ---------- DISCLOSURE / UTILS ---------- */

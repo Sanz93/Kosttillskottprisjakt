@@ -248,14 +248,16 @@ ${L.header(1, 'rabattkod')}
       </div>
       <div class="quiz-final-shops">
         <span class="quiz-final-shops-label">Lös in koden hos</span>
-        <div class="quiz-final-shops-grid">
-          <a class="shop-cta-card" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored" target="_blank">
-            <img src="../assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott">
-            <span class="shop-cta-btn">Besök butiken &rarr;</span>
+        <div class="shop-list">
+          <a class="shop-list-item" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored" target="_blank">
+            <img src="../assets/logos/svenskt-kosttillskott.png" alt="">
+            <span class="shop-list-name">Svenskt Kosttillskott</span>
+            <span class="shop-list-cta">Besök &rarr;</span>
           </a>
-          <a class="shop-cta-card" href="/go/svensk-halsokost/" rel="nofollow sponsored" target="_blank">
-            <img src="../assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost">
-            <span class="shop-cta-btn">Besök butiken &rarr;</span>
+          <a class="shop-list-item" href="/go/svensk-halsokost/" rel="nofollow sponsored" target="_blank">
+            <img src="../assets/logos/svensk-halsokost.png" alt="">
+            <span class="shop-list-name">Svensk Hälsokost</span>
+            <span class="shop-list-cta">Besök &rarr;</span>
           </a>
         </div>
       </div>
