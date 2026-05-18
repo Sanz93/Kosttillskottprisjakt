@@ -3,14 +3,14 @@ const { SHOPS } = require('./assets/shops.js');
 const L = require('./build-lib.js');
 
 function prettyLink(shop) {
-  // /go/<slug>/index.html — meta refresh + JS-redirect + no-referrer + noindex
+  // /go/<slug>/index.html — meta refresh + JS-redirect + referrer=origin + noindex
   const html = `<!doctype html>
 <html lang="sv-SE">
 <head>
   <meta charset="utf-8">
   <title>Vidarekoppling till ${L.escapeHtml(shop.name)}...</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="referrer" content="no-referrer">
+  <meta name="referrer" content="origin">
   <meta http-equiv="refresh" content="0; url=about:blank" id="meta-r">
   <style>
     html, body { margin:0; padding:0; height:100%; }
