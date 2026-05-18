@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /go/
+Disallow: /rabattkod/
 Disallow: /quiz/
 
 Sitemap: https://kosttillskottprisjakt.se/sitemap.xml

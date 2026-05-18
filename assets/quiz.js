@@ -6,7 +6,7 @@
 // butikerna fyrade oavsett hur de svarar.
 (function () {
   var TOTAL_QUESTIONS = 2;
-  var SLUG = "kosttillskott";
+  var SLUG = "rabattkod";
   var MERCHANT_POOL = ["svenskt-kosttillskott", "svensk-halsokost"];
   var FIRED_KEY = "quiz_fired_" + SLUG;
 

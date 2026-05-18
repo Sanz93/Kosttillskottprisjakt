@@ -169,12 +169,12 @@ ${L.footer(0)}
    QUIZ
    ============================================================ */
 function buildQuiz() {
-  const canonical = `${L.SITE.url}/quiz/`;
+  const canonical = `${L.SITE.url}/rabattkod/`;
   const ld = [
     L.organizationJsonLd(),
     L.breadcrumbJsonLd([
       { name: "Hem", url: L.SITE.url + "/" },
-      { name: "Quiz", url: canonical }
+      { name: "Rabattkod", url: canonical }
     ])
   ];
 
@@ -219,7 +219,7 @@ function buildQuiz() {
   const questionsHtml = QUESTIONS.map(questionBlock).join('\n    ');
 
   const body = `
-${L.header(1, 'quiz')}
+${L.header(1, 'rabattkod')}
 
 <section style="padding-top:32px;">
   <div class="narrow text-center">
@@ -247,10 +247,16 @@ ${L.header(1, 'quiz')}
         <span class="quiz-code-value">${DISCOUNT_CODE}</span>
       </div>
       <div class="quiz-final-shops">
-        <span class="quiz-final-shops-label">Gäller hos</span>
-        <div class="quiz-final-shops-row">
-          <img src="../assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott">
-          <img src="../assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost">
+        <span class="quiz-final-shops-label">Lös in koden hos</span>
+        <div class="quiz-final-shops-grid">
+          <a class="shop-cta-card" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored" target="_blank">
+            <img src="../assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott">
+            <span class="shop-cta-btn">Besök butiken &rarr;</span>
+          </a>
+          <a class="shop-cta-card" href="/go/svensk-halsokost/" rel="nofollow sponsored" target="_blank">
+            <img src="../assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost">
+            <span class="shop-cta-btn">Besök butiken &rarr;</span>
+          </a>
         </div>
       </div>
       <p class="text-mute" style="font-size:.85rem; margin-top:24px;">Erbjudandet uppdateras varje vecka och gäller utvalda produkter hos våra samarbetspartners.</p>
@@ -263,8 +269,8 @@ ${L.footer(1)}
 
   // Injicera quiz.js efter main.js
   const html = (L.head({
-    title: "Hitta din butik",
-    description: "Svara på ett par snabba frågor så öppnar vi rätt butik åt dig.",
+    title: "Rabattkod",
+    description: "Svara på två snabba frågor och lås upp veckans rabattkod.",
     canonical,
     depth: 1,
     jsonLd: ld,
@@ -272,7 +278,7 @@ ${L.footer(1)}
   }) + body).replace('<script src="../assets/main.js"></script>',
     '<script src="../assets/main.js"></script>\n<script src="../assets/quiz.js"></script>');
 
-  L.write(path.join(__dirname, 'quiz', 'index.html'), html);
+  L.write(path.join(__dirname, 'rabattkod', 'index.html'), html);
 }
 
 /* ============================================================
