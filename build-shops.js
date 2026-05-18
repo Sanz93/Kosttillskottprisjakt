@@ -45,10 +45,10 @@ ${L.breadcrumbsHtml(crumbs, 2)}
       <img src="../../assets/logos/${shop.slug}.png" alt="${L.escapeAttr(shop.name)}" class="shop-hero-logo">
       <div>
         <span class="eyebrow">Butik · prisanalys</span>
-        <h1>Så bra är priserna hos <em>${L.escapeHtml(shop.name)}</em></h1>
+        <h1>Priser hos ${L.escapeHtml(shop.name)}</h1>
         <p class="hero-sub" style="margin-bottom:24px;">${L.escapeHtml(shop.tagline)}</p>
         <div class="hero-actions">
-          <a href="${shop.pretty_link}" class="btn" rel="nofollow sponsored" target="_blank">Gå till ${L.escapeHtml(shop.name)} &rarr;</a>
+          <a href="${shop.pretty_link}" class="btn" rel="nofollow sponsored" target="_blank">Till ${L.escapeHtml(shop.name)} &rarr;</a>
           <a href="../${otherShop.slug}/" class="btn-link">Jämför med ${L.escapeHtml(otherShop.name)} &rarr;</a>
         </div>
       </div>
@@ -94,7 +94,7 @@ ${L.breadcrumbsHtml(crumbs, 2)}
     <div class="cta-banner mt-4">
       <h3>Klicka direkt till butiken &amp; lås in dagens pris</h3>
       <div class="actions">
-        <a href="${shop.pretty_link}" class="btn" rel="nofollow sponsored" target="_blank">Öppna ${L.escapeHtml(shop.name)}</a>
+        <a href="${shop.pretty_link}" class="btn" rel="nofollow sponsored" target="_blank">Till ${L.escapeHtml(shop.name)}</a>
         <a href="../../priskategori/protein/" class="btn btn-ghost">Se kategorijämförelse</a>
       </div>
     </div>

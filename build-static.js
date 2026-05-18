@@ -43,7 +43,7 @@ function buildIndex() {
         <span class="price-old">${d.normal} kr</span>
       </div>
       <div class="price-save">Spara ${d.save} kr</div>
-      <a href="${d.shop.pretty_link}" class="btn btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
+      <a href="${d.shop.pretty_link}" class="btn btn-ghost btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
     </div>`;
   }).join('');
 
@@ -91,7 +91,7 @@ function buildIndex() {
       <ul>
         ${s.strengths.slice(0, 3).map(x => `<li>${L.escapeHtml(x)}</li>`).join('')}
       </ul>
-      <a class="btn btn-block" href="butik/${s.slug}/">Läs mer om butiken &rarr;</a>
+      <a class="btn btn-ghost btn-block" href="butik/${s.slug}/">Läs mer om butiken &rarr;</a>
     </div>`).join('');
 
   const body = `
@@ -101,7 +101,7 @@ ${L.header(0, 'home')}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">Sveriges prisjämförelse för kosttillskott</span>
-      <h1>Olika kampanjer, samma katalog — <em>vi visar var det är billigast.</em></h1>
+      <h1>Lägsta priset på protein, kreatin och vitaminer.</h1>
       <p class="hero-sub">Svenskt Kosttillskott och Svensk Hälsokost ägs av samma koncern men roterar kampanjer oberoende. Vi spårar de viktigaste produkterna och visar vilken butik som har dem billigast just nu.</p>
       <div class="hero-actions">
         <a href="#fynd" class="btn">Se veckans toppfynd</a>
@@ -174,36 +174,97 @@ function buildQuiz() {
     L.organizationJsonLd(),
     L.breadcrumbJsonLd([
       { name: "Hem", url: L.SITE.url + "/" },
-      { name: "Pris-quiz", url: canonical }
+      { name: "Quiz", url: canonical }
     ])
   ];
 
+  // Frågor — antal = antal pretty-links (2). Varje svar binder en preferred merchant
+  // som JS:en sedan deduperar mot session (varje merchant fyrar max 1 gång per session).
+  const QUESTIONS = [
+    {
+      qid: "q1",
+      text: "Vad är viktigast för dig när du handlar kosttillskott?",
+      options: [
+        { label: "Pris och kampanjer",                  merchant: "svensk-halsokost" },
+        { label: "Brett sortiment",                     merchant: "svensk-halsokost" },
+        { label: "Premium-kvalitet och bra varumärken", merchant: "svensk-halsokost" }
+      ]
+    },
+    {
+      qid: "q2",
+      text: "När planerar du att handla?",
+      options: [
+        { label: "Idag",                          merchant: "svenskt-kosttillskott" },
+        { label: "Inom en vecka",                 merchant: "svenskt-kosttillskott" },
+        { label: "Jag kollar bara runt just nu",  merchant: "svenskt-kosttillskott" }
+      ]
+    }
+  ];
+
+  const DISCOUNT_CODE = "FYND25";
+  const DISCOUNT_PCT = 25;
+
+  function questionBlock(q, idx) {
+    const opts = q.options.map(o =>
+      `<a class="quiz-option" data-merchant="${o.merchant}" data-question-index="${idx}" data-question="${q.qid}" href="/go/${o.merchant}/" rel="nofollow sponsored">${L.escapeHtml(o.label)}</a>`
+    ).join('\n        ');
+    return `<div class="quiz-question" data-question-index="${idx}"${idx === 0 ? '' : ' style="display:none"'}>
+      <h2>${L.escapeHtml(q.text)}</h2>
+      <div class="quiz-options-grid">
+        ${opts}
+      </div>
+    </div>`;
+  }
+
+  const questionsHtml = QUESTIONS.map(questionBlock).join('\n    ');
+
   const body = `
 ${L.header(1, 'quiz')}
-${L.breadcrumbsHtml([{ name: "Hem", href: "" }, { name: "Pris-quiz" }], 1)}
 
-<section style="padding-top:24px;">
-  <div class="wrap text-center">
-    <span class="eyebrow">2 min · 5 frågor</span>
-    <h1>Vilken butik sparar <em style="color:var(--orange); font-style:normal;">just dig</em> mest?</h1>
-    <p class="text-mute" style="max-width:560px; margin:0 auto;">Vi matchar din profil mot Svenskt Kosttillskott och Svensk Hälsokost.</p>
-  </div>
-  <div class="quiz-card" id="quiz-root">
-    <p>Laddar quiz...</p>
-  </div>
+<section style="padding-top:32px;">
   <div class="narrow text-center">
-    <p class="text-mute" style="font-size:.85rem;">Quizet sparar inga svar och skickar ingen data till oss. Resultatet räknas i din egen webbläsare.</p>
+    <span class="eyebrow">Veckans erbjudande · 2 snabba frågor</span>
+    <h1>Lås upp ${DISCOUNT_PCT} % rabatt</h1>
+    <p class="text-mute" style="max-width:560px; margin:0 auto 36px;">Svara på två snabba frågor så får du veckans rabattkod på det du letar efter mest.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar"><div id="progress-fill" class="quiz-progress-fill" style="width:${Math.round(100 / QUESTIONS.length)}%"></div></div>
+      <div class="quiz-progress-meta">
+        <span id="progress-label">Fråga 1 av ${QUESTIONS.length}</span>
+        <span id="progress-pct">${Math.round(100 / QUESTIONS.length)}%</span>
+      </div>
+    </div>
+
+    ${questionsHtml}
+
+    <div id="quiz-final" style="display:none">
+      <h2>Din rabattkod är klar</h2>
+      <p>Använd koden i kassan hos <strong>Svenskt Kosttillskott</strong> eller <strong>Svensk Hälsokost</strong> för upp till ${DISCOUNT_PCT} % rabatt på din nästa order.</p>
+      <div class="quiz-code">
+        <span class="quiz-code-label">Din kod</span>
+        <span class="quiz-code-value">${DISCOUNT_CODE}</span>
+      </div>
+      <div class="quiz-final-shops">
+        <span class="quiz-final-shops-label">Gäller hos</span>
+        <div class="quiz-final-shops-row">
+          <img src="../assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott">
+          <img src="../assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost">
+        </div>
+      </div>
+      <p class="text-mute" style="font-size:.85rem; margin-top:24px;">Erbjudandet uppdateras varje vecka och gäller utvalda produkter hos våra samarbetspartners.</p>
+    </div>
   </div>
 </section>
 
 ${L.footer(1)}
-<script src="../assets/quiz.js"></script>
-`.replace('</body></html>', '</body></html>');
+`;
 
-  // injicera quiz.js före </body>
+  // Injicera quiz.js efter main.js
   const html = (L.head({
-    title: "Pris-quiz: vilken butik sparar du mest hos?",
-    description: "5 snabba frågor som matchar dig med Svenskt Kosttillskott eller Svensk Hälsokost – beroende på vad och hur du handlar.",
+    title: "Hitta din butik",
+    description: "Svara på ett par snabba frågor så öppnar vi rätt butik åt dig.",
     canonical,
     depth: 1,
     jsonLd: ld,

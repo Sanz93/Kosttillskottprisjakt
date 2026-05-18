@@ -236,9 +236,8 @@ function priceTableHtml(products, depth) {
     const winCell = winnerLabel
       ? `<span class="win">${winnerLabel}</span>${saveLine}`
       : '<span class="text-mute">Lika pris</span>';
-    const ctaCell = winnerSlug
-      ? `<a class="btn btn-sm" rel="nofollow sponsored" target="_blank" href="${r}go/${winnerSlug}/">Till butiken</a>`
-      : `<a class="btn btn-sm btn-ghost" rel="nofollow sponsored" target="_blank" href="${r}go/svenskt-kosttillskott/">Välj butik</a>`;
+    const targetSlug = winnerSlug || 'svenskt-kosttillskott';
+    const ctaCell = `<a class="btn btn-sm btn-ghost" rel="nofollow sponsored" target="_blank" href="${r}go/${targetSlug}/">Till butiken</a>`;
 
     return `<tr>
       <td><strong>${escapeHtml(p.name)}</strong><br><span class="text-mute" style="font-size:.85rem;">${escapeHtml(p.unit || '')}</span></td>

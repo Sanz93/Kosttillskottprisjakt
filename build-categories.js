@@ -56,11 +56,11 @@ ${L.breadcrumbsHtml(crumbs, 2)}
 <section>
   <div class="wrap">
     <span class="eyebrow">Priskategori</span>
-    <h1>${L.escapeHtml(cat.name)} — <em>var är priset lägst?</em></h1>
+    <h1>Priser på ${L.escapeHtml(cat.name.toLowerCase())}</h1>
     <p class="hero-sub">${L.escapeHtml(cat.intro)}</p>
     <p class="text-mute" style="font-size:.92rem;"><strong>Användning:</strong> ${L.escapeHtml(cat.intent)}</p>
     <div class="hero-actions">
-      <a href="#tabell" class="btn">Gå till pris-tabellen</a>
+      <a href="#tabell" class="btn btn-ghost">Gå till pris-tabellen</a>
       <a href="../../butik/svenskt-kosttillskott/" class="btn-link">Läs om butikerna &rarr;</a>
     </div>
   </div>

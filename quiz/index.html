@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pris-quiz: vilken butik sparar du mest hos? · Kosttillskottprisjakt</title>
-  <meta name="description" content="5 snabba frågor som matchar dig med Svenskt Kosttillskott eller Svensk Hälsokost – beroende på vad och hur du handlar.">
+  <title>Hitta din butik · Kosttillskottprisjakt</title>
+  <meta name="description" content="Svara på ett par snabba frågor så öppnar vi rätt butik åt dig.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://kosttillskottprisjakt.se/quiz/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sv_SE">
   <meta property="og:site_name" content="Kosttillskottprisjakt">
-  <meta property="og:title" content="Pris-quiz: vilken butik sparar du mest hos?">
-  <meta property="og:description" content="5 snabba frågor som matchar dig med Svenskt Kosttillskott eller Svensk Hälsokost – beroende på vad och hur du handlar.">
+  <meta property="og:title" content="Hitta din butik">
+  <meta property="og:description" content="Svara på ett par snabba frågor så öppnar vi rätt butik åt dig.">
   <meta property="og:url" content="https://kosttillskottprisjakt.se/quiz/">
   <meta property="og:image" content="https://kosttillskottprisjakt.se/assets/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pris-quiz: vilken butik sparar du mest hos?">
-  <meta name="twitter:description" content="5 snabba frågor som matchar dig med Svenskt Kosttillskott eller Svensk Hälsokost – beroende på vad och hur du handlar.">
+  <meta name="twitter:title" content="Hitta din butik">
+  <meta name="twitter:description" content="Svara på ett par snabba frågor så öppnar vi rätt butik åt dig.">
   <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
   <link rel="apple-touch-icon" href="../assets/logos/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Markdrop Solutions","url":"https://kosttillskottprisjakt.se","email":"robin.svensson93@hotmail.com","vatID":"SE930204293301","address":{"@type":"PostalAddress","streetAddress":"Stafsinge 557","postalCode":"311 94","addressLocality":"Falkenberg","addressCountry":"SE"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hem","item":"https://kosttillskottprisjakt.se/"},{"@type":"ListItem","position":2,"name":"Pris-quiz","item":"https://kosttillskottprisjakt.se/quiz/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hem","item":"https://kosttillskottprisjakt.se/"},{"@type":"ListItem","position":2,"name":"Quiz","item":"https://kosttillskottprisjakt.se/quiz/"}]}</script>
   
 </head>
 <body>
@@ -44,21 +44,56 @@
     </ul>
   </div>
 </header>
-<nav class="crumbs wrap" aria-label="Brödsmulor">
-    <a href="../">Hem</a><span class="sep">&rsaquo;</span><span aria-current="page">Pris-quiz</span>
-  </nav>
 
-<section style="padding-top:24px;">
-  <div class="wrap text-center">
-    <span class="eyebrow">2 min · 5 frågor</span>
-    <h1>Vilken butik sparar <em style="color:var(--orange); font-style:normal;">just dig</em> mest?</h1>
-    <p class="text-mute" style="max-width:560px; margin:0 auto;">Vi matchar din profil mot Svenskt Kosttillskott och Svensk Hälsokost.</p>
-  </div>
-  <div class="quiz-card" id="quiz-root">
-    <p>Laddar quiz...</p>
-  </div>
+<section style="padding-top:32px;">
   <div class="narrow text-center">
-    <p class="text-mute" style="font-size:.85rem;">Quizet sparar inga svar och skickar ingen data till oss. Resultatet räknas i din egen webbläsare.</p>
+    <span class="eyebrow">Veckans erbjudande · 2 snabba frågor</span>
+    <h1>Lås upp 25 % rabatt</h1>
+    <p class="text-mute" style="max-width:560px; margin:0 auto 36px;">Svara på två snabba frågor så får du veckans rabattkod på det du letar efter mest.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar"><div id="progress-fill" class="quiz-progress-fill" style="width:50%"></div></div>
+      <div class="quiz-progress-meta">
+        <span id="progress-label">Fråga 1 av 2</span>
+        <span id="progress-pct">50%</span>
+      </div>
+    </div>
+
+    <div class="quiz-question" data-question-index="0">
+      <h2>Vad är viktigast för dig när du handlar kosttillskott?</h2>
+      <div class="quiz-options-grid">
+        <a class="quiz-option" data-merchant="svensk-halsokost" data-question-index="0" data-question="q1" href="/go/svensk-halsokost/" rel="nofollow sponsored">Pris och kampanjer</a>
+        <a class="quiz-option" data-merchant="svensk-halsokost" data-question-index="0" data-question="q1" href="/go/svensk-halsokost/" rel="nofollow sponsored">Brett sortiment</a>
+        <a class="quiz-option" data-merchant="svensk-halsokost" data-question-index="0" data-question="q1" href="/go/svensk-halsokost/" rel="nofollow sponsored">Premium-kvalitet och bra varumärken</a>
+      </div>
+    </div>
+    <div class="quiz-question" data-question-index="1" style="display:none">
+      <h2>När planerar du att handla?</h2>
+      <div class="quiz-options-grid">
+        <a class="quiz-option" data-merchant="svenskt-kosttillskott" data-question-index="1" data-question="q2" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored">Idag</a>
+        <a class="quiz-option" data-merchant="svenskt-kosttillskott" data-question-index="1" data-question="q2" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored">Inom en vecka</a>
+        <a class="quiz-option" data-merchant="svenskt-kosttillskott" data-question-index="1" data-question="q2" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored">Jag kollar bara runt just nu</a>
+      </div>
+    </div>
+
+    <div id="quiz-final" style="display:none">
+      <h2>Din rabattkod är klar</h2>
+      <p>Använd koden i kassan hos <strong>Svenskt Kosttillskott</strong> eller <strong>Svensk Hälsokost</strong> för upp till 25 % rabatt på din nästa order.</p>
+      <div class="quiz-code">
+        <span class="quiz-code-label">Din kod</span>
+        <span class="quiz-code-value">FYND25</span>
+      </div>
+      <div class="quiz-final-shops">
+        <span class="quiz-final-shops-label">Gäller hos</span>
+        <div class="quiz-final-shops-row">
+          <img src="../assets/logos/svenskt-kosttillskott.png" alt="Svenskt Kosttillskott">
+          <img src="../assets/logos/svensk-halsokost.png" alt="Svensk Hälsokost">
+        </div>
+      </div>
+      <p class="text-mute" style="font-size:.85rem; margin-top:24px;">Erbjudandet uppdateras varje vecka och gäller utvalda produkter hos våra samarbetspartners.</p>
+    </div>
   </div>
 </section>
 
@@ -108,4 +143,3 @@
 <script src="../assets/main.js"></script>
 <script src="../assets/quiz.js"></script>
 </body></html>
-<script src="../assets/quiz.js"></script>
