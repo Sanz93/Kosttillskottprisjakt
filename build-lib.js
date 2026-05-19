@@ -40,7 +40,7 @@ function head({ title, description, canonical, ogImage, depth, jsonLd, extraHead
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(title)} · ${SITE.name}</title>
   <meta name="description" content="${escapeAttr(description)}">
-  ${noindex ? '<meta name="robots" content="noindex, nofollow">' : '<meta name="robots" content="index, follow">'}
+  ${noindex ? '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">' : '<meta name="robots" content="index, follow">'}
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sv_SE">

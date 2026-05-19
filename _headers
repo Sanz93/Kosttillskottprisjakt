@@ -1,0 +1,12 @@
+# Cloudflare Pages header overrides
+# X-Robots-Tag på funnel-paths — extra lager utöver <meta name="robots">.
+# Hindrar bots som ignorerar meta-taggar men respekterar HTTP-headers.
+
+/rabattkod/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Referrer-Policy: no-referrer
+
+/go/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0

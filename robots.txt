@@ -1,7 +1,124 @@
+# Standard rules for general search engines.
+# Affiliate-redirects under /go/ are utility paths, not content.
 User-agent: *
 Allow: /
 Disallow: /go/
-Disallow: /rabattkod/
-Disallow: /quiz/
+
+# =====================================================
+# Blockera SEO- och backlink-crawlers från HELA sajten.
+# De ska inte indexera, monitora eller exponera vårt sortiment.
+# =====================================================
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: AhrefsSiteAudit
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: SemrushBot-BA
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+User-agent: MegaIndex.ru
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: SerpstatBot
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: OpenLinkProfiler
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: SEOkicks
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: BUbiNG
+Disallow: /
+
+User-agent: linkfluence
+Disallow: /
+
+# =====================================================
+# Blockera AI-träningsbots så vårt innehåll inte hamnar i LLM-modeller.
+# =====================================================
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
 
 Sitemap: https://kosttillskottprisjakt.se/sitemap.xml
