@@ -12,6 +12,7 @@ const SHOPS = [
     color: "#1F4730",
     location: "Helsingborg",
     pretty_link: "/go/svenskt-kosttillskott/",
+    clean_url: "https://www.svensktkosttillskott.se",
     tagline: "Sportkost-fokus med eget Core-märke. Vassast kampanjer på basvaror som protein och kreatin.",
     strengths: [
       "Eget Core-märke ger lägst grundpris på whey, kreatin, BCAA och omega-3",
@@ -40,6 +41,7 @@ const SHOPS = [
     color: "#1F4730",
     location: "Stockholm",
     pretty_link: "/go/svensk-halsokost/",
+    clean_url: "https://www.svenskhalsokost.se",
     tagline: "Hälsofokus med starkt utbud av vitaminer, omega-3 och naturmedel. Premium-serier som Holistic, Healthwell och Thorne.",
     strengths: [
       "Bredast urval av vitaminer, mineraler och adaptogener",

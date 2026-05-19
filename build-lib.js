@@ -3,6 +3,16 @@
 
 const fs = require('fs');
 const path = require('path');
+const { SHOPS } = require('./assets/shops.js');
+
+// Slug → clean_url lookup
+const SHOP_URL_BY_SLUG = SHOPS.reduce((acc, s) => {
+  acc[s.slug] = s.clean_url || s.pretty_link;
+  return acc;
+}, {});
+
+// Adtraction Cleanlinks tracking script
+const ADTRACTION_SCRIPT = `<script type="text/javascript" src="https://cdn.adt523.net/atag.js?as=2008851212" charset="UTF-8"></script>`;
 
 const SITE = {
   url: "https://kosttillskottprisjakt.se",
@@ -41,6 +51,7 @@ function head({ title, description, canonical, ogImage, depth, jsonLd, extraHead
   <title>${escapeHtml(title)} · ${SITE.name}</title>
   <meta name="description" content="${escapeAttr(description)}">
   ${noindex ? '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">' : '<meta name="robots" content="index, follow">'}
+  <meta name="referrer" content="origin">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sv_SE">
@@ -134,6 +145,7 @@ function footer(depth) {
 </footer>
 <script src="${r}assets/config-links.js"></script>
 <script src="${r}assets/main.js"></script>
+${ADTRACTION_SCRIPT}
 </body></html>`;
 }
 
@@ -237,7 +249,8 @@ function priceTableHtml(products, depth) {
       ? `<span class="win">${winnerLabel}</span>${saveLine}`
       : '<span class="text-mute">Lika pris</span>';
     const targetSlug = winnerSlug || 'svenskt-kosttillskott';
-    const ctaCell = `<a class="btn btn-sm btn-ghost" rel="nofollow sponsored" target="_blank" href="${r}go/${targetSlug}/">Till butiken</a>`;
+    const targetUrl = SHOP_URL_BY_SLUG[targetSlug] || `${r}go/${targetSlug}/`;
+    const ctaCell = `<a class="btn btn-sm btn-ghost" rel="noopener sponsored" target="_blank" href="${targetUrl}">Till butiken</a>`;
 
     return `<tr>
       <td><strong>${escapeHtml(p.name)}</strong><br><span class="text-mute" style="font-size:.85rem;">${escapeHtml(p.unit || '')}</span></td>

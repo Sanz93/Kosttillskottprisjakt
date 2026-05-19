@@ -93,8 +93,10 @@
 
       if (actual) {
         markFired(actual);
-        var fireUrl = "/go/" + encodeURIComponent(actual) + "/?_fire=1&from=quiz-" + encodeURIComponent(SLUG)
-          + "&q=" + encodeURIComponent(a.dataset.question || ("q" + (qidx + 1)));
+        // Cleanlinks-flöde: navigera till ren merchant-URL från data-url-attributet.
+        // atag.js (laddad i footern) intercepterar klicket och spårar via Adtraction.
+        // Fallback till /go/<slug>/ om data-url saknas på elementet (för framtida pretty-link-merchants).
+        var fireUrl = a.dataset.url || ("/go/" + encodeURIComponent(actual) + "/?_fire=1&from=quiz-" + encodeURIComponent(SLUG));
         window.location.href = fireUrl;
       } else {
         // Pool tom — fyra inte, gå bara vidare till nästa fråga

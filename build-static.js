@@ -43,7 +43,7 @@ function buildIndex() {
         <span class="price-old">${d.normal} kr</span>
       </div>
       <div class="price-save">Spara ${d.save} kr</div>
-      <a href="${d.shop.pretty_link}" class="btn btn-ghost btn-block" rel="nofollow sponsored" target="_blank">Till butiken &rarr;</a>
+      <a href="${d.shop.clean_url}" class="btn btn-ghost btn-block" rel="noopener sponsored" target="_blank">Till butiken &rarr;</a>
     </div>`;
   }).join('');
 
@@ -204,10 +204,17 @@ function buildQuiz() {
   const DISCOUNT_CODE = "FYND25";
   const DISCOUNT_PCT = 25;
 
+  // Slug → clean merchant URL (för cleanlinks-flödet)
+  const URL_BY_SLUG = {
+    "svenskt-kosttillskott": "https://www.svensktkosttillskott.se",
+    "svensk-halsokost":      "https://www.svenskhalsokost.se"
+  };
+
   function questionBlock(q, idx) {
-    const opts = q.options.map(o =>
-      `<a class="quiz-option" data-merchant="${o.merchant}" data-question-index="${idx}" data-question="${q.qid}" href="/go/${o.merchant}/" rel="nofollow sponsored">${L.escapeHtml(o.label)}</a>`
-    ).join('\n        ');
+    const opts = q.options.map(o => {
+      const url = URL_BY_SLUG[o.merchant] || `/go/${o.merchant}/`;
+      return `<a class="quiz-option" data-merchant="${o.merchant}" data-url="${url}" data-question-index="${idx}" data-question="${q.qid}" href="${url}" rel="noopener sponsored">${L.escapeHtml(o.label)}</a>`;
+    }).join('\n        ');
     return `<div class="quiz-question" data-question-index="${idx}"${idx === 0 ? '' : ' style="display:none"'}>
       <h2>${L.escapeHtml(q.text)}</h2>
       <div class="quiz-options-grid">
@@ -249,12 +256,12 @@ ${L.header(1, 'rabattkod')}
       <div class="quiz-final-shops">
         <span class="quiz-final-shops-label">Lös in koden hos</span>
         <div class="shop-list">
-          <a class="shop-list-item" href="/go/svenskt-kosttillskott/" rel="nofollow sponsored" target="_blank">
+          <a class="shop-list-item" href="https://www.svensktkosttillskott.se" rel="noopener sponsored" target="_blank">
             <img src="../assets/logos/svenskt-kosttillskott.png" alt="">
             <span class="shop-list-name">Svenskt Kosttillskott</span>
             <span class="shop-list-cta">Besök &rarr;</span>
           </a>
-          <a class="shop-list-item" href="/go/svensk-halsokost/" rel="nofollow sponsored" target="_blank">
+          <a class="shop-list-item" href="https://www.svenskhalsokost.se" rel="noopener sponsored" target="_blank">
             <img src="../assets/logos/svensk-halsokost.png" alt="">
             <span class="shop-list-name">Svensk Hälsokost</span>
             <span class="shop-list-cta">Besök &rarr;</span>
