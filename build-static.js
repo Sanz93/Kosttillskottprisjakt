@@ -204,7 +204,8 @@ function buildQuiz() {
   const DISCOUNT_CODE = "FYND25";
   const DISCOUNT_PCT = 25;
 
-  // Slug → clean merchant URL (för cleanlinks-flödet)
+  // Slug → ren merchant-URL. atag.js (Cleanlinks) skriver om href till
+  // spårnings-URL efter sidladdning — länken ska vara ren här.
   const URL_BY_SLUG = {
     "svenskt-kosttillskott": "https://www.svensktkosttillskott.se",
     "svensk-halsokost":      "https://www.svenskhalsokost.se"
@@ -213,7 +214,7 @@ function buildQuiz() {
   function questionBlock(q, idx) {
     const opts = q.options.map(o => {
       const url = URL_BY_SLUG[o.merchant] || `/go/${o.merchant}/`;
-      return `<a class="quiz-option" data-merchant="${o.merchant}" data-url="${url}" data-question-index="${idx}" data-question="${q.qid}" href="${url}" rel="noopener sponsored">${L.escapeHtml(o.label)}</a>`;
+      return `<a class="quiz-option" data-question-index="${idx}" href="${url}" target="_blank" rel="noopener sponsored">${L.escapeHtml(o.label)}</a>`;
     }).join('\n        ');
     return `<div class="quiz-question" data-question-index="${idx}"${idx === 0 ? '' : ' style="display:none"'}>
       <h2>${L.escapeHtml(q.text)}</h2>

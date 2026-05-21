@@ -11,8 +11,9 @@ const SHOP_URL_BY_SLUG = SHOPS.reduce((acc, s) => {
   return acc;
 }, {});
 
-// Adtraction Cleanlinks tracking script
-const ADTRACTION_SCRIPT = `<script type="text/javascript" src="https://cdn.adt523.net/atag.js?as=2008851212" charset="UTF-8"></script>`;
+// Adtraction Cleanlinks tracking script.
+// data-cfasync="false" hindrar Cloudflare Rocket Loader från att fördröja/bryta scriptet.
+const ADTRACTION_SCRIPT = `<script data-cfasync="false" type="text/javascript" src="https://cdn.adt523.net/atag.js?as=2008851212" charset="UTF-8"></script>`;
 
 const SITE = {
   url: "https://kosttillskottprisjakt.se",

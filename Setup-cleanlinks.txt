@@ -1,0 +1,65 @@
+Svensk Hälsokost
+
+Din spårningslänk: <a href="https://www.svenskhalsokost.se">Länktext</a>
+Script: <script type="text/javascript" src="https://cdn.adt523.net/atag.js?as=2008851212" charset="UTF-8"></script>
+
+
+Svenskt kosttillskott
+
+Din spårningslänk: <a href="https://www.svensktkosttillskott.se">Länktext</a>
+Script: <script type="text/javascript" src="https://cdn.adt523.net/atag.js?as=2008851212" charset="UTF-8"></script>
+
+
+Det som är viktigt och information mässigt när de kommer till clean link är det här.
+
+Lägg även denna spårningskod direkt före avslutande </body>. Koden behövs endast en gång per sida oavsett antalet länkar och annonsprogram.
+
+
+Så behöver vi då 2 olika java script + 2 olika clean links.
+
+
+Här är mer information ifrån Adtraction:
+
+Get started with cleanlinks
+Manually creating tracking links for your content can be time consuming. Simplify the process by using Adtraction’s cleanlink technology.
+
+
+Written by Linn Ødegaard
+January 22, 2026
+Note that the cleanlink functionality is slightly more technical. We recommend being able to add scripts to your own site before considering using cleanlinks.
+
+What are Cleanlinks?
+Cleanlink is an Adtraction technology that allows you to automatically capture all clicks that go out from your site to a brand within the Adtraction system that your channel is approved for.
+
+ 
+
+Using cleanlinks can save you a lot of time as you don’t have to generate individual tracking links every time you want to add content to your site. Another benefit of using cleanlinks is that your links will look like they point directly to the advertiser. This will leave your site looking clean and trustworthy.
+
+ 
+
+Get started with cleanlinks
+Cleanlink is activated by implementing your channel’s cleanlink script site-wide on your domain. Find your channel's specific cleanlink script by browsing any ad in the Adtraction system and choosing cleanlink as the code type when generating the tracking code.
+
+ 
+
+
+The script in the bottom is to be implemented site-wide before the closing the </body> tag.
+
+ 
+
+This will make sure that any link that is pointed towards an Adtraction advertiser which your channel is approved for will be picked up and sent through the Adtraction tracking server.
+
+ 
+
+Cleanlinks for Wordpress
+If your site is built using Wordpress, make sure to check out our Wordpress cleanlink plugin using the below guide:
+
+Download our Adtraction Cleanlink Plugin
+
+Install and activate the plugin on your site by clicking «Plugins» and «Add new plugin»
+
+Go to settings and click «Adtraction Cleanlink»
+
+Paste the cleanlink script that you collected from the Adtraction system and click save 
+
+Always make sure to verify that the clicks are registering in your account when working with cleanlinks.
