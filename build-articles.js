@@ -24,7 +24,7 @@ function articlePage(art) {
 
   const ctaShops = (art.cta_shops || []).map(id => SHOPS.find(s => s.id === id)).filter(Boolean);
   const ctaButtons = ctaShops.map((s, i) =>
-    `<a href="${s.clean_url || s.pretty_link}" class="btn ${i === 0 ? '' : 'btn-ghost'}" rel="noopener sponsored" target="_blank">${L.escapeHtml(s.name)}</a>`
+    `<a href="${s.pretty_link}" class="btn ${i === 0 ? '' : 'btn-ghost'}" rel="nofollow sponsored" target="_blank">${L.escapeHtml(s.name)}</a>`
   ).join(' ');
 
   const sectionsHtml = art.sections.map((s, i) => {
